@@ -26,8 +26,12 @@ const Navbar = () => {
         toast.success(
           'Success! You can now view your page at some random url!'
         );
+      } else if (responses.status === 400) {
+        toast.error(
+          'Please use a different url! The url you wanted already exists.'
+        );
       } else {
-        toast.error('Something went wrong...');
+        toast.error('Something went wrong... Please try again.');
       }
     } catch (error) {
       toast.error(
