@@ -1,0 +1,17 @@
+@import '../../../assets/scss/main.scss';
+
+.right-bar {
+  position: fixed;
+  height: 100%;
+  right: 0;
+  top: 0;
+  width: 13vw;
+  background-color: $grey;
+  transition: transform 0.5s;
+  padding-top: $navbar-height;
+
+  &.hidden {
+    transform: translate(13vw);
+    transition: transform 0.5s ease-in-out;
+  }
+}

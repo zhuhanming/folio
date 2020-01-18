@@ -1,0 +1,17 @@
+@import '../../../assets/scss/main.scss';
+
+.left-bar {
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 13vw;
+  background-color: $grey;
+  transition: transform 0.5s ease-in-out;
+  padding-top: $navbar-height;
+
+  &.hidden {
+    transform: translate(-13vw);
+    transition: transform 0.5s ease-in-out;
+  }
+}
