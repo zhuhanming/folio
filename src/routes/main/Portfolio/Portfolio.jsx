@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
+
+import Subtitle from 'components/subtitle';
 import Caption from 'components/captions';
 import Title from 'components/title';
 import Image from 'components/image';
@@ -32,6 +34,14 @@ const Portfolio = () => {
                     index={index}
                   />
                 );
+                case 'subtitle':
+                  return (
+                    <Subtitle
+                      key={componentId}
+                      component={component}
+                      index={index}
+                    />
+                  );
               case 'image':
                 return (
                   <Image
