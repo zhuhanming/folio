@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Modal from 'react-modal';
+
 import App from 'app';
 import AppProviders from 'contexts';
 
@@ -10,6 +12,8 @@ import * as serviceWorker from './serviceWorker';
 import './index.scss';
 
 import store, { persistor } from './app/store';
+
+Modal.setAppElement('#root');
 
 const render = () => {
   ReactDOM.render(
