@@ -1,0 +1,15 @@
+@import '../../assets/scss/main.scss';
+
+.sidebar-component {
+  height: calc(20% - 2rem);
+  margin: 1rem;
+  border-radius: 0.5rem;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.is-dragged {
+    width: 68vw !important;
+  }
+}
