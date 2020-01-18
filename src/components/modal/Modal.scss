@@ -1,0 +1,53 @@
+@import '../../assets/scss/variables';
+
+.ReactModal {
+  &__Body--open,
+  &__Html--open {
+    overflow: hidden;
+  }
+
+  &__Overlay {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    &--after-open {
+      opacity: 1;
+    }
+    &--before-close {
+      opacity: 0;
+    }
+  }
+}
+
+.modal {
+  &__content {
+    position: relative;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    border-radius: 30px;
+    outline: none;
+    padding: 2rem;
+    margin: 0 1rem;
+    max-height: calc(100vh - 40px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (min-width: $tablet) {
+      width: 50rem;
+    }
+  }
+  &__overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(89, 95, 111, 0.5);
+  }
+}
