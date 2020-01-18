@@ -59,6 +59,18 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'caption':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'caption',
+              text: 'Enter your caption here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+
         default:
       }
       dispatch(setComponentOrder(newComponentOrder));
