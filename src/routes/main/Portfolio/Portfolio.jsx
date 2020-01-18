@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Title from 'components/title';
+import Image from 'components/image';
 
 import './Portfolio.scss';
 
@@ -26,6 +27,14 @@ const Portfolio = () => {
               case 'title':
                 return (
                   <Title
+                    key={componentId}
+                    component={component}
+                    index={index}
+                  />
+                );
+              case 'image':
+                return (
+                  <Image
                     key={componentId}
                     component={component}
                     index={index}
