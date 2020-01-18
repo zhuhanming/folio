@@ -1,6 +1,7 @@
 .portfolio-image {
   width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -8,7 +9,23 @@
   &__body {
     flex: 1;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: flex-start;
+
+    &.has-content {
+      height: 30rem;
+    }
+  }
+
+  &__dragged-over {
+    background-color: rgba(185, 223, 215, 0.3);
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    i {
+      margin: 0.5rem 0;
+    }
   }
 }

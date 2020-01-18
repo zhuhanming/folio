@@ -1,0 +1,12 @@
+.image-preview {
+  object-fit: cover;
+  height: 30rem;
+  width: 100%;
+  padding: 1rem;
+
+  &__flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
