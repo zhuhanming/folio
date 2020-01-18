@@ -34,15 +34,27 @@ const Main = () => {
       dispatch(incrementCounter());
       const newComponentOrder = Array.from(componentOrder);
       newComponentOrder.splice(destination.index, 0, newComponentIndex);
+      let newComponents;
       switch (draggableId) {
         case 'title':
           // eslint-disable-next-line no-case-declarations
-          const newComponents = {
+          newComponents = {
             ...components,
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'title',
               text: 'Enter your title here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+        case 'image':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'image',
+              images: ['']
             }
           };
           dispatch(setComponents(newComponents));
