@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
-import Caption from 'components/captions';
+import Caption from 'components/caption';
 import Title from 'components/title';
 import Image from 'components/image';
 
