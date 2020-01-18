@@ -70,7 +70,17 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
-
+        case 'description':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'description',
+              text: 'Enter your description here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
         default:
       }
       dispatch(setComponentOrder(newComponentOrder));
