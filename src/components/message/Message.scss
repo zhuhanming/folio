@@ -1,0 +1,23 @@
+.portfolio-message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__input {
+    width: 100%;
+    color: #363636;
+  }
+
+  &__container {
+    flex: 1;
+  }
+
+  &__body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
