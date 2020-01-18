@@ -15,15 +15,4 @@ const ApiService = axios.create({
   ]
 });
 
-ApiService.interceptors.request.use(
-  // config => {
-  //   const token = tokenUtils.getToken();
-  //   // eslint-disable-next-line no-param-reassign
-  //   if (token) config.headers.Authorization = `Bearer ${token}`;
-  //   return config;
-  // },
-  error => {
-    return Promise.reject(new Error(error));
-  }
-);
 export default ApiService;
