@@ -11,5 +11,15 @@
 
   &.is-dragged {
     width: 68vw !important;
+
+    .sidebar-component__image {
+      text-align: center;
+      font-size: 4rem;
+    }
+  }
+
+  &__image {
+    font-size: 2rem;
+    color: $grey-light;
   }
 }

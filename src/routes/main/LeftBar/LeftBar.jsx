@@ -8,7 +8,7 @@ import './LeftBar.scss';
 
 const LeftBar = () => {
   const { isSidebarShown } = useSidebar();
-  const leftBarContent = ['title', 'subtitle'];
+  const leftBarContent = ['title', 'subtitle', 'caption'];
 
   return (
     <Droppable droppableId="left-sidebar" type="portfolio">
@@ -17,10 +17,14 @@ const LeftBar = () => {
           className={`left-bar ${isSidebarShown ? '' : 'hidden'}`}
           ref={provided.innerRef}
           {...provided.droppableProps}
-          isDraggingOver={snapshot.isDraggingOver}
+          isdraggingover={snapshot.isDraggingOver.toString()}
         >
           {leftBarContent.map((type, index) => (
-            <SidebarComponent type={type} index={index} />
+            <SidebarComponent
+              type={type}
+              index={index}
+              key={`component-${type}`}
+            />
           ))}
         </div>
       )}

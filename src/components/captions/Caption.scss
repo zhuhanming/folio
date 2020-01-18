@@ -1,0 +1,16 @@
+.portfolio-caption {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__input {
+    flex: 1;
+  }
+}
+
+.caption {
+  font-style: italic;
+  text-align: center;
+}

@@ -23,6 +23,7 @@ const Main = () => {
 
   const onDragEnd = result => {
     const { draggableId, source, destination } = result;
+
     if (
       (source.droppableId === 'left-sidebar' ||
         source.droppableId === 'right-sidebar') &&
@@ -33,10 +34,11 @@ const Main = () => {
       dispatch(incrementCounter());
       const newComponentOrder = Array.from(componentOrder);
       newComponentOrder.splice(destination.index, 0, newComponentIndex);
+      let newComponents;
       switch (draggableId) {
         case 'title':
           // eslint-disable-next-line no-case-declarations
-          const newComponents = {
+          newComponents = {
             ...components,
             [newComponentIndex]: {
               id: newComponentIndex,
@@ -47,8 +49,7 @@ const Main = () => {
           dispatch(setComponents(newComponents));
           break;
         case 'subtitle':
-          // eslint-disable-next-line no-case-declarations
-          const subtitleComponents = {
+          newComponents = {
             ...components,
             [newComponentIndex]: {
               id: newComponentIndex,
@@ -56,10 +57,44 @@ const Main = () => {
               text: 'Enter your subtitle here'
             }
           };
-          dispatch(setComponents(subtitleComponents));
+          dispatch(setComponents(newComponents));
           break;
+        case 'image':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'image',
+              images: ['']
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+        case 'caption':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'caption',
+              text: 'Enter your caption here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+
         default:
       }
+      dispatch(setComponentOrder(newComponentOrder));
+      return;
+    }
+    if (
+      destination &&
+      source.droppableId === destination.droppableId &&
+      source.droppableId === 'main-portfolio'
+    ) {
+      const newComponentOrder = Array.from(componentOrder);
+      newComponentOrder.splice(source.index, 1);
+      newComponentOrder.splice(destination.index, 0, draggableId);
       dispatch(setComponentOrder(newComponentOrder));
     }
   };

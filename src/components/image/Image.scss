@@ -1,0 +1,14 @@
+.portfolio-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__body {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
