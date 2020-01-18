@@ -5,13 +5,18 @@ const components = createSlice({
   name: 'components',
   initialState: {
     components: {
-      default: {
-        id: 'default',
+      defaultTitle: {
+        id: 'defaultTitle',
         type: 'title',
         text: 'Welcome to Folio!'
+      },
+      defaultSubtitle: {
+        id: 'defaultSubtitle',
+        type: 'subtitle',
+        text: 'Drag and drop any components to the centre here to get started!'
       }
     },
-    componentOrder: ['default'],
+    componentOrder: ['defaultTitle', 'defaultSubtitle'],
     componentCounter: 0
   },
   reducers: {
