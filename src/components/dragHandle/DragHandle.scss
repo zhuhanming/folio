@@ -1,0 +1,7 @@
+@import '../../assets/scss/main.scss';
+
+.draghandle {
+  color: $grey-lighter;
+  margin-right: 0.5rem;
+  transform: translate(-0.5rem);
+}
