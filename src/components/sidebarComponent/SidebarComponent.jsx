@@ -16,6 +16,14 @@ const SidebarComponent = ({ type, index }) => {
         return <h3 className="caption">Caption</h3>;
       case 'description':
         return <h1 className="description">Description</h1>;
+      case 'message':
+        return (
+          <div className="message is-dark">
+            <div className="message-body sidebar-component__message">
+              Message
+            </div>
+          </div>
+        );
       default:
         return <></>;
     }

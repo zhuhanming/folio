@@ -23,6 +23,7 @@ const Main = () => {
   );
 
   const onDragEnd = result => {
+    console.log(result);
     const { draggableId, source, destination } = result;
 
     if (
@@ -89,6 +90,17 @@ const Main = () => {
               id: newComponentIndex,
               type: 'description',
               text: 'Enter your description here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+        case 'message':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'message',
+              text: 'Enter your message here'
             }
           };
           dispatch(setComponents(newComponents));

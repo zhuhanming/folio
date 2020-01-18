@@ -7,6 +7,7 @@ import Subtitle from 'components/subtitle';
 import Description from 'components/description';
 import Title from 'components/title';
 import Image from 'components/image';
+import Message from 'components/message';
 
 import './Portfolio.scss';
 
@@ -62,6 +63,14 @@ const Portfolio = () => {
               case 'description':
                 return (
                   <Description
+                    key={componentId}
+                    component={component}
+                    index={index}
+                  />
+                );
+              case 'message':
+                return (
+                  <Message
                     key={componentId}
                     component={component}
                     index={index}
