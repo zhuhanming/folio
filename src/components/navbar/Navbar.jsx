@@ -7,6 +7,7 @@ import { MAIN } from 'constants/routes';
 import { useSidebar } from 'contexts/SidebarContext';
 import ApiService from 'services/apiService';
 import { generateName } from 'utils/nameUtils';
+import NavbarLogo from 'assets/images/navbarLogo';
 
 import './Navbar.scss';
 
@@ -44,7 +45,7 @@ const Navbar = () => {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link className="navbar-item navbar__logo" to={MAIN}>
-          Folio
+          <NavbarLogo />
         </Link>
       </div>
 
