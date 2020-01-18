@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   setComponents,
   setComponentOrder,
-  incrementCounter
+  incrementCounter,
+  updateComponent
 } from 'reducers/componentDux';
 import RightBar from './RightBar';
 import Portfolio from './Portfolio';
@@ -85,6 +86,29 @@ const Main = () => {
       newComponentOrder.splice(source.index, 1);
       newComponentOrder.splice(destination.index, 0, draggableId);
       dispatch(setComponentOrder(newComponentOrder));
+      return;
+    }
+    if (
+      destination &&
+      source.droppableId === destination.droppableId &&
+      source.droppableId === 'image'
+    ) {
+      // eslint-disable-next-line no-unused-vars
+      const [componentId, position, componentContent] = draggableId.split('_');
+      const component = components[componentId];
+      const newImageOrder = Array.from(component.images);
+      newImageOrder.splice(source.index, 1);
+      newImageOrder.splice(destination.index, 0, componentContent);
+
+      dispatch(
+        updateComponent({
+          id: componentId,
+          component: {
+            ...component,
+            images: newImageOrder
+          }
+        })
+      );
     }
   };
 
