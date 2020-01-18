@@ -24,6 +24,8 @@ const SidebarComponent = ({ type, index }) => {
             </div>
           </div>
         );
+      case 'video':
+        return <i className="fab fa-youtube sidebar-component__video" />;
       default:
         return <></>;
     }
