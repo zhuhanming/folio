@@ -2,6 +2,7 @@
 
 .delete-button {
   color: $grey-lighter;
+  transform: translate(0.5rem);
 
   &:hover {
     color: $danger;
