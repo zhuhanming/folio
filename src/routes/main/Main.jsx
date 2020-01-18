@@ -23,6 +23,7 @@ const Main = () => {
 
   const onDragEnd = result => {
     const { draggableId, source, destination } = result;
+
     if (
       (source.droppableId === 'left-sidebar' ||
         source.droppableId === 'right-sidebar') &&
@@ -48,6 +49,17 @@ const Main = () => {
           break;
         default:
       }
+      dispatch(setComponentOrder(newComponentOrder));
+      return;
+    }
+    if (
+      destination &&
+      source.droppableId === destination.droppableId &&
+      source.droppableId === 'main-portfolio'
+    ) {
+      const newComponentOrder = Array.from(componentOrder);
+      newComponentOrder.splice(source.index, 1);
+      newComponentOrder.splice(destination.index, 0, draggableId);
       dispatch(setComponentOrder(newComponentOrder));
     }
   };
