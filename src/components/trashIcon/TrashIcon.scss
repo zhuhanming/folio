@@ -1,0 +1,10 @@
+@import '../../assets/scss/main.scss';
+
+.delete-button {
+  color: $grey-lighter;
+
+  &:hover {
+    color: $danger;
+    cursor: pointer;
+  }
+}
