@@ -22,7 +22,6 @@ const Main = () => {
   );
 
   const onDragEnd = result => {
-    console.log(result);
     const { draggableId, source, destination } = result;
     if (
       (source.droppableId === 'left-sidebar' ||
