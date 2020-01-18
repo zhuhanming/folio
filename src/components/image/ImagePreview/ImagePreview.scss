@@ -8,5 +8,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
+
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+.image-modal {
+  height: auto;
+  max-height: 80vh;
+  width: auto;
 }
