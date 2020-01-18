@@ -8,9 +8,9 @@ import DragHandle from 'components/dragHandle';
 import { updateComponent, deleteComponent } from 'reducers/componentDux';
 import TrashIcon from 'components/trashIcon';
 
-import './Subtitle.scss';
+import './Description.scss';
 
-const Subtitle = ({ component, index }) => {
+const Description = ({ component, index }) => {
   const dispatch = useDispatch();
   const { text } = component;
   const { register, getValues } = useForm({
@@ -45,7 +45,7 @@ const Subtitle = ({ component, index }) => {
     <Draggable draggableId={component.id} index={index}>
       {provided => (
         <div
-          className="portfolio-subtitle"
+          className="portfolio-description"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
@@ -54,7 +54,7 @@ const Subtitle = ({ component, index }) => {
             defaultValue={text}
             name="text"
             ref={register({ required: true })}
-            className="portfolio-subtitle__input subtitle"
+            className="portfolio-caption__input description is-size-6"
             onBlur={onBlur}
             rows={1}
           />
@@ -65,4 +65,4 @@ const Subtitle = ({ component, index }) => {
   );
 };
 
-export default Subtitle;
+export default Description;

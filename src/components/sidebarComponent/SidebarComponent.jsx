@@ -9,11 +9,13 @@ const SidebarComponent = ({ type, index }) => {
       case 'title':
         return <h1 className="title">Title</h1>;
       case 'subtitle':
-        return <h1 className = "subtitle">Subtitle</h1>;
+        return <h1 className="subtitle">Subtitle</h1>;
       case 'image':
         return <i className="fas fa-image sidebar-component__image" />;
       case 'caption':
         return <h3 className="caption">Caption</h3>;
+      case 'description':
+        return <h1 className="description">Description</h1>;
       default:
         return <></>;
     }
