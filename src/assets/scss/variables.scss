@@ -1,0 +1,65 @@
+@import 'bulma/sass/utilities/_all.sass';
+
+// Start variables here
+$mobile: 576px !default;
+// $desktop: 1279px;
+$navbar-height: 4rem;
+$navbar-dropdown-arrow: $grey-dark;
+$navbar-breakpoint: $mobile;
+
+$fontawesome: 'Font Awesome 5 Free';
+
+// Brand colors
+$green: #26cb6b;
+$green-dark: #299857;
+$blue: #1f4190;
+$blue-alt: #267ed0;
+$yellow: #ffdd57;
+$yellow-dark: #947600;
+$red: #fa2b56;
+$red-dark: #b92f4c;
+$light: #f7f8fb;
+$dark: #595f6f;
+$grey: #f7f8fb;
+$grey-light: #bfc4ce;
+$grey-lighter: #dddfe7;
+$dark-transclucent: rgba(89, 95, 111, 0.9);
+
+$link: $blue;
+$success: $green;
+$danger: $red;
+
+$body-bg: $white;
+$navbar-background-color: $dark;
+
+// Set your brand colors
+// $purple: #8a4d76;
+// $pink: #fa7c91;
+// $brown: #757763;
+// $beige-light: #d0d1cd;
+// $beige-lighter: #eff0eb;
+
+// Update Bulma's global variables
+$body-color: $dark;
+$text: $dark;
+$section-padding: 2rem 0;
+$label-color: $dark;
+$button-background-color: none;
+$input-radius: 10px;
+$button-color: white;
+$button-focus-color: white;
+$button-active-color: white;
+$button-hover-color: white;
+$control-radius: 10px;
+// $family-sans-serif: "Nunito", sans-serif;
+// $grey-dark: $brown;
+// $grey-light: $beige-light;
+// $primary: $purple;
+// $link: $pink;
+
+// Update some of Bulma's component variables
+$body-background-color: $body-bg;
+$dropdown-item-color: $text;
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
