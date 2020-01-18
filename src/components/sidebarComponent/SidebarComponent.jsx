@@ -8,6 +8,8 @@ const SidebarComponent = ({ type, index }) => {
     switch (type) {
       case 'title':
         return <h1 className="title">Title</h1>;
+      case 'image':
+        return <i className="fas fa-image sidebar-component__image" />;
       default:
         return <></>;
     }
