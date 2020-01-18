@@ -105,6 +105,17 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'video':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'video',
+              url: ''
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
         default:
       }
       dispatch(setComponentOrder(newComponentOrder));

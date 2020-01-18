@@ -8,6 +8,7 @@ import Description from 'components/description';
 import Title from 'components/title';
 import Image from 'components/image';
 import Message from 'components/message';
+import Video from 'components/video';
 
 import './Portfolio.scss';
 
@@ -71,6 +72,14 @@ const Portfolio = () => {
               case 'message':
                 return (
                   <Message
+                    key={componentId}
+                    component={component}
+                    index={index}
+                  />
+                );
+              case 'video':
+                return (
+                  <Video
                     key={componentId}
                     component={component}
                     index={index}

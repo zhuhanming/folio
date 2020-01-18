@@ -8,7 +8,7 @@ import './RightBar.scss';
 
 const RightBar = () => {
   const { isSidebarShown } = useSidebar();
-  const rightBarContent = ['image'];
+  const rightBarContent = ['image', 'video'];
 
   return (
     <Droppable droppableId="right-sidebar" type="portfolio">
