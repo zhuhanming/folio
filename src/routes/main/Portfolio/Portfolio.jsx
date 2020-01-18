@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
-
+import Subtitle from 'components/subtitle';
 import Title from 'components/title';
 
 import './Portfolio.scss';
@@ -31,6 +31,14 @@ const Portfolio = () => {
                     index={index}
                   />
                 );
+                case 'subtitle':
+                  return (
+                    <Subtitle
+                      key={componentId}
+                      component={component}
+                      index={index}
+                    />
+                  );
               default:
                 return <></>;
             }

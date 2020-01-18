@@ -8,6 +8,8 @@ const SidebarComponent = ({ type, index }) => {
     switch (type) {
       case 'title':
         return <h1 className="title">Title</h1>;
+      case 'subtitle':
+        return <h1 className = "subtitle">Subtitle</h1>;
       default:
         return <></>;
     }

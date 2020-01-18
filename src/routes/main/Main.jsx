@@ -46,6 +46,18 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'subtitle':
+          // eslint-disable-next-line no-case-declarations
+          const subtitleComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'subtitle',
+              text: 'Enter your subtitle here'
+            }
+          };
+          dispatch(setComponents(subtitleComponents));
+          break;
         default:
       }
       dispatch(setComponentOrder(newComponentOrder));
