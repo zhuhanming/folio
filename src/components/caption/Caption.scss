@@ -4,7 +4,7 @@
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background-color: inherit;
+  // background-color: inherit;
 
   &__input {
     flex: 1;
@@ -14,4 +14,6 @@
 .caption {
   font-style: italic;
   text-align: center;
+  color: inherit;
+  font-weight: 300;
 }
