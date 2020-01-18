@@ -1,0 +1,14 @@
+.portfolio-subtitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__input {
+    flex: 1;
+    &.title:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+}

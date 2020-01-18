@@ -49,6 +49,17 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'subtitle':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'subtitle',
+              text: 'Enter your subtitle here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
         case 'image':
           newComponents = {
             ...components,
