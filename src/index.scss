@@ -1,0 +1,112 @@
+@import 'assets/scss/variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Gelasio:400,400i,600,700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Gelasio', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+iframe {
+  height: 100%;
+}
+
+#root {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+}
+
+html {
+  overflow-y: auto;
+  font-size: 16px;
+}
+
+.field label {
+  pointer-events: none;
+}
+
+.box {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit !important;
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+input,
+textarea {
+  border: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 1rem;
+
+  &.as-non-button {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    white-space: normal;
+  }
+
+  &.no-outline {
+    outline: none;
+  }
+
+  &.no-shadow {
+    box-shadow: none;
+  }
+
+  &.button[disabled] {
+    background-image: none;
+    background-color: $grey-lighter;
+  }
+}
+
+.is-text-wrap {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
