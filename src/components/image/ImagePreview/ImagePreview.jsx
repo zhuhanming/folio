@@ -24,6 +24,8 @@ const ImagePreview = ({ index, image, component, size }) => {
               // eslint-disable-next-line no-nested-ternary
               size === 1 ? 'hundred' : size === 2 ? 'fifty' : 'thirty'
             }`}
+            {...provided.draggableProps}
+            ref={provided.innerRef}
             {...provided.dragHandleProps}
           >
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
@@ -31,8 +33,6 @@ const ImagePreview = ({ index, image, component, size }) => {
               className="image image-preview"
               src={image}
               alt={component.id}
-              {...provided.draggableProps}
-              ref={provided.innerRef}
               onClick={() => setIsModalOpen(true)}
             />
           </div>
