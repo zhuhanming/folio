@@ -8,7 +8,7 @@ import './LeftBar.scss';
 
 const LeftBar = () => {
   const { isSidebarShown } = useSidebar();
-  const leftBarContent = ['title'];
+  const leftBarContent = ['title', 'caption'];
 
   return (
     <Droppable droppableId="left-sidebar" type="portfolio">

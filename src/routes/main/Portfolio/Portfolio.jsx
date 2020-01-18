@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
-
+import Caption from 'components/captions';
 import Title from 'components/title';
 import Image from 'components/image';
 
@@ -35,6 +35,14 @@ const Portfolio = () => {
               case 'image':
                 return (
                   <Image
+                    key={componentId}
+                    component={component}
+                    index={index}
+                  />
+                );
+              case 'caption':
+                return (
+                  <Caption
                     key={componentId}
                     component={component}
                     index={index}

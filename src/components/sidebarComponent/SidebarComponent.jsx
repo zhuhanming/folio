@@ -10,6 +10,8 @@ const SidebarComponent = ({ type, index }) => {
         return <h1 className="title">Title</h1>;
       case 'image':
         return <i className="fas fa-image sidebar-component__image" />;
+      case 'caption':
+        return <h1 className="caption">Caption</h1>;
       default:
         return <></>;
     }
