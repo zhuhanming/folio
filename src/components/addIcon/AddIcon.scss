@@ -1,0 +1,11 @@
+@import '../../assets/scss/main.scss';
+
+.plus-button {
+  color: $grey-lighter;
+  transform: translate(0.5rem);
+
+  &:hover {
+    color: $primary;
+    cursor: pointer;
+  }
+}
