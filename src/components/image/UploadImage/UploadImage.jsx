@@ -11,37 +11,41 @@ import './UploadImage.scss';
 
 const UploadImage = ({ index, component, size }) => {
   const dispatch = useDispatch();
-  const onDrop = useCallback(acceptedFiles => {
-    if (acceptedFiles.length > 1) {
-      toast.error('You can only upload one image!');
-      return;
-    }
-    acceptedFiles.forEach(file => {
-      if (imageTypes.every(type => file.type !== type)) {
-        toast.error(`'${file.type}' is not a supported format`);
+  const onDrop = useCallback(
+    acceptedFiles => {
+      if (acceptedFiles.length > 1) {
+        toast.error('You can only upload one image!');
         return;
       }
-      const reader = new FileReader();
-      reader.onabort = () => toast.error('The uploading was aborted!');
-      reader.onerror = () => toast.error('An error occurred while uploading!');
-      reader.onload = () => {
-        const url = reader.result;
-        const newImages = Array.from(component.images);
-        newImages.splice(index, 1);
-        newImages.splice(index, 0, url);
-        dispatch(
-          updateComponent({
-            id: component.id,
-            component: {
-              ...component,
-              images: newImages
-            }
-          })
-        );
-      };
-      reader.readAsDataURL(file);
-    });
-  }, []);
+      acceptedFiles.forEach(file => {
+        if (imageTypes.every(type => file.type !== type)) {
+          toast.error(`'${file.type}' is not a supported format`);
+          return;
+        }
+        const reader = new FileReader();
+        reader.onabort = () => toast.error('The uploading was aborted!');
+        reader.onerror = () =>
+          toast.error('An error occurred while uploading!');
+        reader.onload = () => {
+          const url = reader.result;
+          const newImages = Array.from(component.images);
+          newImages.splice(index, 1);
+          newImages.splice(index, 0, url);
+          dispatch(
+            updateComponent({
+              id: component.id,
+              component: {
+                ...component,
+                images: newImages
+              }
+            })
+          );
+        };
+        reader.readAsDataURL(file);
+      });
+    },
+    [component, dispatch, index]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
