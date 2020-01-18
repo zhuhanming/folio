@@ -1,24 +1,26 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  components: {
+    defaultTitle: {
+      id: 'defaultTitle',
+      type: 'title',
+      text: 'Welcome to Folio!'
+    },
+    defaultSubtitle: {
+      id: 'defaultSubtitle',
+      type: 'subtitle',
+      text: 'Drag and drop any components to the centre here to get started!'
+    }
+  },
+  componentOrder: ['defaultTitle', 'defaultSubtitle'],
+  componentCounter: 0
+};
+
 const components = createSlice({
   name: 'components',
-  initialState: {
-    components: {
-      defaultTitle: {
-        id: 'defaultTitle',
-        type: 'title',
-        text: 'Welcome to Folio!'
-      },
-      defaultSubtitle: {
-        id: 'defaultSubtitle',
-        type: 'subtitle',
-        text: 'Drag and drop any components to the centre here to get started!'
-      }
-    },
-    componentOrder: ['defaultTitle', 'defaultSubtitle'],
-    componentCounter: 0
-  },
+  initialState,
   reducers: {
     setComponents: (state, { payload }) => {
       state.components = payload;
@@ -40,6 +42,11 @@ const components = createSlice({
     },
     incrementCounter: state => {
       state.componentCounter += 1;
+    },
+    resetState: state => {
+      state.components = initialState.components;
+      state.componentOrder = initialState.componentOrder;
+      state.componentCounter = initialState.componentCounter;
     }
   }
 });
@@ -50,7 +57,8 @@ export const {
   deleteComponent,
   setComponentOrder,
   updateComponent,
-  incrementCounter
+  incrementCounter,
+  resetState
 } = components.actions;
 
 export default components.reducer;

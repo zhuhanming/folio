@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { MAIN } from 'constants/routes';
 import { useSidebar } from 'contexts/SidebarContext';
 import ApiService from 'services/apiService';
 import { generateName } from 'utils/nameUtils';
-import NavbarLogo from 'assets/images/navbarLogo';
+import { resetState } from 'reducers/componentDux';
 
 import './Navbar.scss';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
   const components = useSelector(state => state.components);
 
@@ -41,15 +42,35 @@ const Navbar = () => {
     }
   };
 
+  const onReset = () => {
+    const confirmReset = window.confirm(
+      'Are you sure you want to reset this portfolio? You will not be able to undo this action.'
+    );
+    if (confirmReset) {
+      dispatch(resetState());
+    }
+  };
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link className="navbar-item navbar__logo" to={MAIN}>
-          <NavbarLogo />
+          FOLIO
         </Link>
       </div>
 
       <div className="navbar-end">
+        <div className="navbar-item">
+          <div className="buttons">
+            <button
+              type="button"
+              className="button is-danger"
+              onClick={onReset}
+            >
+              Reset
+            </button>
+          </div>
+        </div>
         <div className="navbar-item">
           <div className="buttons">
             <button
