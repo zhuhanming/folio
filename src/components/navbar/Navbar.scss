@@ -1,0 +1,23 @@
+@import '../../assets/scss/main.scss';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__logo.navbar-item {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: $white;
+
+    &:hover {
+      color: $primary;
+    }
+    &:focus {
+      color: $primary;
+    }
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+}
