@@ -37,12 +37,20 @@ const Navbar = ({ showButtons = true }) => {
         })
       });
       if (responses.status === 200) {
-        setNavbarState({ isLoading: false });
+        setNavbarState({ isLoading: false, websiteName: generateName() });
       } else {
-        setNavbarState({ isLoading: false, isError: true });
+        setNavbarState({
+          isLoading: false,
+          isError: true,
+          websiteName: generateName()
+        });
       }
     } catch (error) {
-      setNavbarState({ isLoading: false, isError: true });
+      setNavbarState({
+        isLoading: false,
+        isError: true,
+        websiteName: generateName()
+      });
     }
   };
 
