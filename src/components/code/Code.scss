@@ -1,0 +1,27 @@
+.portfolio-code {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  pre {
+    flex: 1;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    color: #c1c3bf;
+  }
+
+  code {
+    width: 100%;
+    color: inherit;
+  }
+  &__input {
+    width: 100%;
+    color: inherit;
+    // background-color: rgba(0, 0, 0, 0.5);
+    // border-radius: 4px;
+    // padding: 0.5rem;
+    // color: white;
+  }
+}
