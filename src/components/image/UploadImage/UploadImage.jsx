@@ -22,6 +22,10 @@ const UploadImage = ({ index, component, size }) => {
           toast.error(`'${file.type}' is not a supported format`);
           return;
         }
+        if (file.size > 1048576) {
+          toast.error('Your file needs to be smaller than 1MB!');
+          return;
+        }
         const reader = new FileReader();
         reader.onabort = () => toast.error('The uploading was aborted!');
         reader.onerror = () =>
@@ -57,6 +61,7 @@ const UploadImage = ({ index, component, size }) => {
           key={index}
           {...provided.draggableProps}
           ref={provided.innerRef}
+          {...provided.dragHandleProps}
           className={`${
             // eslint-disable-next-line no-nested-ternary
             size === 1 ? 'hundred' : size === 2 ? 'fifty' : 'thirty'
@@ -64,9 +69,7 @@ const UploadImage = ({ index, component, size }) => {
         >
           <div className="image-upload">
             <input {...getInputProps()} />
-            <p {...provided.dragHandleProps}>
-              Drop your image here or click to upload your image!
-            </p>
+            <p>Drop your image here or click to upload your image!</p>
           </div>
         </div>
       )}

@@ -50,7 +50,11 @@ const Image = ({ component, index }) => {
           ref={provided.innerRef}
         >
           <DragHandle {...provided.dragHandleProps} />
-          <Droppable droppableId="image" type="image" direction="horizontal">
+          <Droppable
+            droppableId={`image-${component.id}`}
+            type="image"
+            direction="horizontal"
+          >
             {(providedTwo, snapshotTwo) => (
               <div
                 {...providedTwo.droppableProps}
