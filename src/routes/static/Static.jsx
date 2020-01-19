@@ -11,6 +11,7 @@ import StaticMessage from 'components/message/StaticMessage';
 import StaticVideo from 'components/video/StaticVideo';
 import StaticSite from 'components/site/StaticSite';
 import StaticCode from 'components/code/StaticCode';
+import StaticMusic from 'components/music/StaticMusic';
 import ApiService from 'services/apiService';
 import Loading from 'components/loading';
 
@@ -89,6 +90,8 @@ const Static = () => {
               return <StaticMessage key={componentId} component={component} />;
             case 'video':
               return <StaticVideo key={componentId} component={component} />;
+            case 'music':
+              return <StaticMusic key={componentId} component={component} />;
             case 'site':
               return <StaticSite key={componentId} component={component} />;
             case 'code':

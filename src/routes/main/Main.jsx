@@ -116,6 +116,17 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'music':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'music',
+              url: ''
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
         case 'site':
           newComponents = {
             ...components,

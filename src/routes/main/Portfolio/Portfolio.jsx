@@ -11,6 +11,7 @@ import Message from 'components/message';
 import Video from 'components/video';
 import Site from 'components/site';
 import Code from 'components/code';
+import Music from 'components/music';
 
 import './Portfolio.scss';
 
@@ -82,6 +83,14 @@ const Portfolio = () => {
               case 'video':
                 return (
                   <Video
+                    key={componentId}
+                    component={component}
+                    index={index}
+                  />
+                );
+              case 'music':
+                return (
+                  <Music
                     key={componentId}
                     component={component}
                     index={index}

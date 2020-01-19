@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // const getCurrentPathWithoutParam = path => {
 //   // Returns original path given if there no child path.
 //   return path.slice(0, path.lastIndexOf('/')) || path;
@@ -41,4 +42,10 @@ const getHttpsUrl = url => {
   return url;
 };
 
-export { getHttpsUrl, getYoutubeId, retryPromise };
+const getSoundCloudUrl = url => {
+  const [remove, use] = url.split('src="', 2);
+  const [useTwo, removeTwo] = use.split('"><', 2);
+  return useTwo;
+};
+
+export { getHttpsUrl, getYoutubeId, retryPromise, getSoundCloudUrl };

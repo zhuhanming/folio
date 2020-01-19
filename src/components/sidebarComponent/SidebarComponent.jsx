@@ -30,6 +30,8 @@ const SidebarComponent = ({ type, index }) => {
         return <i className="fas fa-link sidebar-component__site" />;
       case 'code':
         return <i className="fas fa-code sidebar-component__code" />;
+      case 'music':
+        return <i className="fab fa-soundcloud sidebar-component__music" />;
       default:
         return <></>;
     }

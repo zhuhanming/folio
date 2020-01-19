@@ -1,0 +1,25 @@
+.portfolio-music {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  height: auto;
+
+  &__form {
+    flex: 1;
+  }
+
+  &__input {
+    width: 100%;
+    text-align: center;
+    min-height: 3rem;
+  }
+  &__music {
+    flex: 1;
+    height: 385px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
