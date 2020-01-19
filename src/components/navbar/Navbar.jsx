@@ -11,7 +11,7 @@ import { resetState } from 'reducers/componentDux';
 
 import './Navbar.scss';
 
-const Navbar = () => {
+const Navbar = ({ isDesktop = true }) => {
   const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
   const components = useSelector(state => state.components);
@@ -58,42 +58,43 @@ const Navbar = () => {
           FOLIO
         </Link>
       </div>
-
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <div className="buttons">
-            <button
-              type="button"
-              className="button is-danger"
-              onClick={onReset}
-            >
-              Reset
-            </button>
+      {isDesktop && (
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <button
+                type="button"
+                className="button is-danger"
+                onClick={onReset}
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <div className="navbar-item">
+            <div className="buttons">
+              <button
+                type="button"
+                className="button is-light"
+                onClick={toggleSidebar}
+              >
+                Sidebar
+              </button>
+            </div>
+          </div>
+          <div className="navbar-item">
+            <div className="buttons">
+              <button
+                type="button"
+                className="button is-primary"
+                onClick={onComplete}
+              >
+                Complete
+              </button>
+            </div>
           </div>
         </div>
-        <div className="navbar-item">
-          <div className="buttons">
-            <button
-              type="button"
-              className="button is-light"
-              onClick={toggleSidebar}
-            >
-              Sidebar
-            </button>
-          </div>
-        </div>
-        <div className="navbar-item">
-          <div className="buttons">
-            <button
-              type="button"
-              className="button is-primary"
-              onClick={onComplete}
-            >
-              Complete
-            </button>
-          </div>
-        </div>
-      </div>
+      )}
     </nav>
   );
 };

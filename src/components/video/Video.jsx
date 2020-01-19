@@ -58,8 +58,6 @@ const Video = ({ component, index }) => {
                 ref={register({ required: true })}
                 className="portfolio-video__input video is-size-6"
                 placeholder="Enter YouTube URL here"
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus
               />
             </form>
           )}
