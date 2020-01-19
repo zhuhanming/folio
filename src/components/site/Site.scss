@@ -1,10 +1,12 @@
+@import '../../assets/scss/main.scss';
+
 .portfolio-site {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 
   &__body {
     flex: 1;
@@ -15,6 +17,23 @@
     height: 15rem;
     &.has-content {
       height: 30rem;
+    }
+
+    @media screen and (max-width: $tablet) {
+      &.static-portfolio-site {
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+
+        div {
+          width: 100%;
+          margin: 2rem;
+          height: 20rem;
+          div.site-preview__flex {
+            margin: 0;
+          }
+        }
+      }
     }
   }
 

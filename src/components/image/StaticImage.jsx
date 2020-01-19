@@ -8,9 +8,9 @@ const StaticImage = ({ component }) => {
   const { images } = component;
 
   return (
-    <div className="portfolio-image">
+    <div className="portfolio-image ">
       <div
-        className={`portfolio-image__body ${
+        className={`portfolio-image__body static-portfolio-image ${
           images.some(ele => ele !== '') ? 'has-content' : ''
         }`}
       >

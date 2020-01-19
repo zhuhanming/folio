@@ -10,7 +10,7 @@ const Site = ({ component }) => {
 
   return (
     <div className="portfolio-site">
-      <div className="portfolio-site__body">
+      <div className="portfolio-site__body static-portfolio-site">
         {sites.map(site =>
           site.url === '' ? (
             <></>

@@ -1,3 +1,5 @@
+@import '../../assets/scss/main.scss';
+
 .portfolio-image {
   width: 100%;
   display: flex;
@@ -14,6 +16,19 @@
 
     &.has-content {
       height: 30rem;
+    }
+
+    @media screen and (max-width: $tablet) {
+      &.static-portfolio-image {
+        flex-direction: column;
+        height: auto;
+
+        div {
+          width: 100%;
+          margin: 2rem;
+          height: 20rem;
+        }
+      }
     }
   }
 

@@ -16,6 +16,7 @@ import ApiService from 'services/apiService';
 import Loading from 'components/loading';
 
 import '../main/Main.scss';
+import './Static.scss';
 
 const Static = () => {
   const location = useLocation();
@@ -69,8 +70,8 @@ const Static = () => {
     );
 
   return (
-    <div className="main">
-      <div className="portfolio">
+    <div className="static">
+      <div className="static__portfolio portfolio">
         {components.componentOrder.map(componentId => {
           const component = components.components[componentId];
           switch (component.type) {

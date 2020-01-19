@@ -12,9 +12,8 @@ const StaticVideo = ({ component }) => {
         <div className="portfolio-video__video">
           <iframe
             title={component.id}
+            className="iframe-video-static"
             src={url}
-            width="640"
-            height="385"
             allowFullScreen
           />
         </div>
