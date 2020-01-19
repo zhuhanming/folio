@@ -24,7 +24,7 @@ const Main = () => {
 
   const onDragEnd = result => {
     console.log(result);
-    const { draggableId, source, destination } = result;
+    const { draggableId, source, destination, type } = result;
 
     if (
       (source.droppableId === 'left-sidebar' ||
@@ -116,6 +116,34 @@ const Main = () => {
           };
           dispatch(setComponents(newComponents));
           break;
+        case 'site':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'site',
+              sites: [
+                {
+                  title: 'Enter site title here',
+                  image: '',
+                  url: ''
+                }
+              ]
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
+        case 'code':
+          newComponents = {
+            ...components,
+            [newComponentIndex]: {
+              id: newComponentIndex,
+              type: 'code',
+              text: '// enter your code here'
+            }
+          };
+          dispatch(setComponents(newComponents));
+          break;
         default:
       }
       dispatch(setComponentOrder(newComponentOrder));
@@ -135,7 +163,7 @@ const Main = () => {
     if (
       destination &&
       source.droppableId === destination.droppableId &&
-      source.droppableId === 'image'
+      type === 'image'
     ) {
       // eslint-disable-next-line no-unused-vars
       const [componentId, position, componentContent] = draggableId.split('_');
@@ -150,6 +178,32 @@ const Main = () => {
           component: {
             ...component,
             images: newImageOrder
+          }
+        })
+      );
+      return;
+    }
+    if (
+      destination &&
+      source.droppableId === destination.droppableId &&
+      type === 'site'
+    ) {
+      // eslint-disable-next-line no-unused-vars
+      const [componentId, position, componentContent] = draggableId.split(
+        '_',
+        3
+      );
+      const component = components[componentId];
+      const newSiteOrder = Array.from(component.sites);
+      newSiteOrder.splice(source.index, 1);
+      newSiteOrder.splice(destination.index, 0, JSON.parse(componentContent));
+
+      dispatch(
+        updateComponent({
+          id: componentId,
+          component: {
+            ...component,
+            sites: newSiteOrder
           }
         })
       );
