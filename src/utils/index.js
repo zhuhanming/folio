@@ -33,4 +33,12 @@ const getYoutubeId = url => {
   return match && match[2].length === 11 ? match[2] : null;
 };
 
-export { getYoutubeId, retryPromise };
+const getHttpsUrl = url => {
+  const prefix = 'https://';
+  if (url.toLowerCase().substr(0, prefix.length) !== prefix) {
+    return prefix + url;
+  }
+  return url;
+};
+
+export { getHttpsUrl, getYoutubeId, retryPromise };
