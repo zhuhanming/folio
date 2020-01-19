@@ -9,6 +9,8 @@ import Title from 'components/title';
 import Image from 'components/image';
 import Message from 'components/message';
 import Video from 'components/video';
+import Site from 'components/site';
+import Code from 'components/code';
 
 import './Portfolio.scss';
 
@@ -84,6 +86,14 @@ const Portfolio = () => {
                     component={component}
                     index={index}
                   />
+                );
+              case 'site':
+                return (
+                  <Site key={componentId} component={component} index={index} />
+                );
+              case 'code':
+                return (
+                  <Code key={componentId} component={component} index={index} />
                 );
               default:
                 return <></>;

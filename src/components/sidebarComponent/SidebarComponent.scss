@@ -31,4 +31,14 @@
   &__message {
     color: black;
   }
+
+  &__site {
+    font-size: 2rem;
+    color: $grey-light;
+  }
+
+  &__code {
+    font-size: 2rem;
+    color: $grey-light;
+  }
 }

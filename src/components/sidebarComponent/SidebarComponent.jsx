@@ -26,6 +26,10 @@ const SidebarComponent = ({ type, index }) => {
         );
       case 'video':
         return <i className="fab fa-youtube sidebar-component__video" />;
+      case 'site':
+        return <i className="fas fa-link sidebar-component__site" />;
+      case 'code':
+        return <i className="fas fa-code sidebar-component__code" />;
       default:
         return <></>;
     }
