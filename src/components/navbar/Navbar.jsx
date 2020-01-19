@@ -1,44 +1,48 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 
+import Modal from 'components/modal';
 import { MAIN } from 'constants/routes';
 import { useSidebar } from 'contexts/SidebarContext';
 import ApiService from 'services/apiService';
 import { generateName } from 'utils/nameUtils';
 import { resetState } from 'reducers/componentDux';
+import { SITE_URL } from 'constants/urls';
 
 import './Navbar.scss';
 
 const Navbar = ({ showButtons = true }) => {
+  const [navbarState, setNavbarState] = useReducer((s, a) => ({ ...s, ...a }), {
+    isLoading: false,
+    websiteName: generateName(),
+    isModalOpen: false,
+    isError: false
+  });
   const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
   const components = useSelector(state => state.components);
 
   const onComplete = async () => {
+    await setNavbarState({
+      isLoading: true,
+      isModalOpen: true,
+      isError: false
+    });
     try {
       const responses = await ApiService.post('/pages', {
-        newName: generateName(),
-        pageJson: {
+        newName: navbarState.websiteName,
+        pageJson: JSON.stringify({
           ...components
-        }
+        })
       });
       if (responses.status === 200) {
-        toast.success(
-          'Success! You can now view your page at some random url!'
-        );
-      } else if (responses.status === 400) {
-        toast.error(
-          'Please use a different url! The url you wanted already exists.'
-        );
+        setNavbarState({ isLoading: false });
       } else {
-        toast.error('Something went wrong... Please try again.');
+        setNavbarState({ isLoading: false, isError: true });
       }
     } catch (error) {
-      toast.error(
-        "Something went wrong! Please refresh your page. Don't worry, your information won't disappear."
-      );
+      setNavbarState({ isLoading: false, isError: true });
     }
   };
 
@@ -52,50 +56,85 @@ const Navbar = ({ showButtons = true }) => {
   };
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <Link className="navbar-item navbar__logo" to={MAIN}>
-          FOLIO
-        </Link>
-      </div>
-      {showButtons && (
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <button
-                type="button"
-                className="button is-danger"
-                onClick={onReset}
-              >
-                Reset
-              </button>
-            </div>
-          </div>
-          <div className="navbar-item">
-            <div className="buttons">
-              <button
-                type="button"
-                className="button is-light"
-                onClick={toggleSidebar}
-              >
-                Sidebar
-              </button>
-            </div>
-          </div>
-          <div className="navbar-item">
-            <div className="buttons">
-              <button
-                type="button"
-                className="button is-primary"
-                onClick={onComplete}
-              >
-                Complete
-              </button>
-            </div>
-          </div>
+    <>
+      <Modal
+        isOpen={navbarState.isModalOpen}
+        handleClose={() =>
+          setNavbarState({
+            isModalOpen: false,
+            isLoading: false,
+            isError: false
+          })
+        }
+      >
+        <div className="complete-modal">
+          {navbarState.isLoading && <h1 className="title">Loading...</h1>}
+          {!navbarState.isLoading && navbarState.isError && (
+            <h1 className="title has-text-danger">
+              Something went wrong... Try again!
+            </h1>
+          )}
+          {!navbarState.isLoading && !navbarState.isError && (
+            <>
+              <h1 className="title">Portfolio saved!</h1>
+              <h3 className="subtitle complete-modal__description">
+                You can access your portfolio at:
+                <br />
+                <a
+                  href={`${SITE_URL}/static?code=${navbarState.websiteName}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >{`${SITE_URL}/static?code=${navbarState.websiteName}`}</a>
+              </h3>
+            </>
+          )}
         </div>
-      )}
-    </nav>
+      </Modal>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <Link className="navbar-item navbar__logo" to={MAIN}>
+            FOLIO
+          </Link>
+        </div>
+        {showButtons && (
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="button is-danger"
+                  onClick={onReset}
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <div className="navbar-item">
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="button is-light"
+                  onClick={toggleSidebar}
+                >
+                  Sidebar
+                </button>
+              </div>
+            </div>
+            <div className="navbar-item">
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="button is-primary"
+                  onClick={onComplete}
+                >
+                  Complete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+    </>
   );
 };
 

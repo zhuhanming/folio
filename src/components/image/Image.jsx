@@ -25,7 +25,7 @@ const Image = ({ component, index }) => {
 
   const handleAdd = () => {
     if (images.length === 3) {
-      toast.warn('You can only have 3 images!');
+      toast.warn('You can only have up to 3 images in a single row!');
       return;
     }
     const newImages = Array.from(images);
