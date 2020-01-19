@@ -1,13 +1,10 @@
 import React from 'react';
 
-import Navbar from 'components/navbar';
-
 import './Nondesktop.scss';
 
 const Nondesktop = () => {
   return (
     <div className="non-desktop">
-      <Navbar showButtons={false} />
       <div className="columns">
         <div className="column is-full">
           <article className="message is-info">

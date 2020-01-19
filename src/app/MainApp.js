@@ -26,7 +26,7 @@ const MainApp = () => {
   return (
     <Router>
       <div className="app">
-        <Navbar showButtons={pathname !== STATIC} />
+        <Navbar showButtons={pathname !== STATIC && !isMobile} />
         <Switch>
           <Route path={`${STATIC}`}>
             <Static />
