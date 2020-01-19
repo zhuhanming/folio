@@ -7,7 +7,7 @@ import './Nondesktop.scss';
 const Nondesktop = () => {
   return (
     <div className="non-desktop">
-      <Navbar isDesktop={false} />
+      <Navbar showButtons={false} />
       <div className="columns">
         <div className="column is-full">
           <article className="message is-info">

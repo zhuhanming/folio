@@ -11,7 +11,7 @@ import { resetState } from 'reducers/componentDux';
 
 import './Navbar.scss';
 
-const Navbar = ({ isDesktop = true }) => {
+const Navbar = ({ showButtons = true }) => {
   const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
   const components = useSelector(state => state.components);
@@ -58,7 +58,7 @@ const Navbar = ({ isDesktop = true }) => {
           FOLIO
         </Link>
       </div>
-      {isDesktop && (
+      {showButtons && (
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">

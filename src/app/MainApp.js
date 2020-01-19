@@ -4,24 +4,31 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  useLocation
 } from 'react-router-dom';
 
 import Navbar from 'components/navbar';
 import Main from 'routes/main';
-import { MAIN, ROOT } from 'constants/routes';
+import Static from 'routes/static';
+import { MAIN, ROOT, STATIC } from 'constants/routes';
 
 import './App.scss';
 
 const redirectToMain = () => <Redirect to={MAIN} />;
 
-const AuthenticatedApp = () => {
+const MainApp = () => {
+  const { pathname } = useLocation();
+
   return (
     <Router>
       <div className="app">
-        <Navbar />
+        <Navbar showButtons={pathname !== STATIC} />
         <Switch>
           <Route exact path={MAIN} component={Main} />
+          <Route path={`${STATIC}`}>
+            <Static />
+          </Route>
           {/* <Route exact path={ROOT} component={Landing} /> */}
           <Route exact path={ROOT} render={redirectToMain} />
         </Switch>
@@ -30,4 +37,4 @@ const AuthenticatedApp = () => {
   );
 };
 
-export default AuthenticatedApp;
+export default MainApp;
