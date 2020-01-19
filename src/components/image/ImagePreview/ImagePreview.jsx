@@ -20,7 +20,7 @@ const ImagePreview = ({ index, image, component, size }) => {
             />
           </Modal>
           <div
-            className={`image-preview__flex overlay ${
+            className={`image-preview__flex ${
               // eslint-disable-next-line no-nested-ternary
               size === 1 ? 'hundred' : size === 2 ? 'fifty' : 'thirty'
             }`}

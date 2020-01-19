@@ -2,13 +2,13 @@
   object-fit: cover;
   height: 30rem;
   width: 100%;
-  padding: 1rem;
 
   &__flex {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 1rem;
   }
 
   transition: transform 0.5s ease;
@@ -25,4 +25,16 @@
   height: auto;
   max-height: 80vh;
   width: auto;
+}
+
+.hundred {
+  width: 100%;
+}
+
+.fifty {
+  width: 50%;
+}
+
+.thirty {
+  width: 33%;
 }
