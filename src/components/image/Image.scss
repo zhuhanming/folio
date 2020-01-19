@@ -13,6 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    overflow: hidden;
 
     &.has-content {
       height: 30rem;

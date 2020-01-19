@@ -8,6 +8,10 @@ import './Site.scss';
 const Site = ({ component }) => {
   const { sites } = component;
 
+  const isEmpty = sites.every(ele => ele.url === '');
+
+  if (isEmpty) return <></>;
+
   return (
     <div className="portfolio-site">
       <div className="portfolio-site__body static-portfolio-site">

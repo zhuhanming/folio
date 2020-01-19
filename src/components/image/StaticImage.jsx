@@ -7,6 +7,10 @@ import './Image.scss';
 const StaticImage = ({ component }) => {
   const { images } = component;
 
+  const isEmpty = images.every(ele => ele === '');
+
+  if (isEmpty) return <></>;
+
   return (
     <div className="portfolio-image ">
       <div

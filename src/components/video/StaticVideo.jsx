@@ -5,19 +5,18 @@ import './Video.scss';
 const StaticVideo = ({ component }) => {
   const { url } = component;
 
+  if (url === '') return <></>;
+
   return (
     <div className="portfolio-video">
-      {url === '' && <></>}
-      {url !== '' && (
-        <div className="portfolio-video__video">
-          <iframe
-            title={component.id}
-            className="iframe-video-static"
-            src={url}
-            allowFullScreen
-          />
-        </div>
-      )}
+      <div className="portfolio-video__video">
+        <iframe
+          title={component.id}
+          className="iframe-video-static"
+          src={url}
+          allowFullScreen
+        />
+      </div>
     </div>
   );
 };
