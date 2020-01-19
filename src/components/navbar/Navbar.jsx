@@ -37,19 +37,17 @@ const Navbar = ({ showButtons = true }) => {
         })
       });
       if (responses.status === 200) {
-        setNavbarState({ isLoading: false, websiteName: generateName() });
+        setNavbarState({ isLoading: false });
       } else {
         setNavbarState({
           isLoading: false,
-          isError: true,
-          websiteName: generateName()
+          isError: true
         });
       }
     } catch (error) {
       setNavbarState({
         isLoading: false,
-        isError: true,
-        websiteName: generateName()
+        isError: true
       });
     }
   };
@@ -71,7 +69,8 @@ const Navbar = ({ showButtons = true }) => {
           setNavbarState({
             isModalOpen: false,
             isLoading: false,
-            isError: false
+            isError: false,
+            websiteName: generateName()
           })
         }
       >
