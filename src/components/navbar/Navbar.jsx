@@ -24,7 +24,7 @@ const Navbar = ({ showButtons = true }) => {
   const components = useSelector(state => state.components);
 
   const onComplete = async () => {
-    await setNavbarState({
+    setNavbarState({
       isLoading: true,
       isModalOpen: true,
       isError: false
@@ -69,8 +69,7 @@ const Navbar = ({ showButtons = true }) => {
           setNavbarState({
             isModalOpen: false,
             isLoading: false,
-            isError: false,
-            websiteName: generateName()
+            isError: false
           })
         }
       >
@@ -93,6 +92,10 @@ const Navbar = ({ showButtons = true }) => {
                   rel="noopener noreferrer"
                 >{`${SITE_URL}/static?code=${navbarState.websiteName}`}</a>
               </h3>
+              <h4>
+                Note: If you wish to generate another link, you need to refresh
+                the page.
+              </h4>
             </>
           )}
         </div>
