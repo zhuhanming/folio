@@ -5,11 +5,10 @@ import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import autosize from 'autosize';
-import imageCompression from 'browser-image-compression';
 
 import { imageTypes } from 'constants/fileTypes';
 import { updateComponent } from 'reducers/componentDux';
-import { CLOUDINARY_UPLOAD_URL } from 'constants/urls';
+import { uploadImageToCloudinary } from 'utils/cloudinaryUtils';
 
 import './UploadSite.scss';
 
@@ -37,20 +36,7 @@ const UploadImage = ({ index, component, site }) => {
         const uploadImage = async (image) => {
           setIsLoading(true);
           try {
-            const compressedFile = await imageCompression(image, {
-              maxSizeMB: 1,
-            });
-            const formData = new FormData();
-            formData.append('file', compressedFile);
-            formData.append(
-              'upload_preset',
-              process.env.REACT_APP_UPLOAD_PRESET
-            );
-            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
-              method: 'POST',
-              body: formData,
-            });
-            const { url } = await response.json();
+            const url = await uploadImageToCloudinary(image);
             const newSites = Array.from(component.sites);
             newSites.splice(index, 1);
             newSites.splice(index, 0, {
