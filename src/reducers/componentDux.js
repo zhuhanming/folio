@@ -6,16 +6,16 @@ const initialState = {
     defaultTitle: {
       id: 'defaultTitle',
       type: 'title',
-      text: 'Welcome to Folio!'
+      text: 'Welcome to Folio!',
     },
     defaultSubtitle: {
       id: 'defaultSubtitle',
       type: 'subtitle',
-      text: 'Drag and drop any components to the centre here to get started!'
-    }
+      text: 'Drag and drop any components to the centre here to get started!',
+    },
   },
   componentOrder: ['defaultTitle', 'defaultSubtitle'],
-  componentCounter: 0
+  componentCounter: 0,
 };
 
 const components = createSlice({
@@ -28,27 +28,30 @@ const components = createSlice({
     setComponentOrder: (state, { payload }) => {
       state.componentOrder = payload;
     },
+    setComponentCounter: (state, { payload }) => {
+      state.componentCounter = payload;
+    },
     deleteComponent: (state, { payload }) => {
       delete state.components[payload];
       state.componentOrder = state.componentOrder.filter(
-        val => val !== payload
+        (val) => val !== payload
       );
     },
-    clearComponents: state => {
+    clearComponents: (state) => {
       state.components = [];
     },
     updateComponent: (state, { payload }) => {
       state.components[payload.id] = payload.component;
     },
-    incrementCounter: state => {
+    incrementCounter: (state) => {
       state.componentCounter += 1;
     },
-    resetState: state => {
+    resetState: (state) => {
       state.components = initialState.components;
       state.componentOrder = initialState.componentOrder;
       state.componentCounter = initialState.componentCounter;
-    }
-  }
+    },
+  },
 });
 
 export const {
@@ -56,9 +59,10 @@ export const {
   clearComponents,
   deleteComponent,
   setComponentOrder,
+  setComponentCounter,
   updateComponent,
   incrementCounter,
-  resetState
+  resetState,
 } = components.actions;
 
 export default components.reducer;

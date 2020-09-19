@@ -1,10 +1,10 @@
 import React, { useReducer, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from 'components/modal';
-import { MAIN } from 'constants/routes';
+import { EXAMPLES, MAIN, STATIC } from 'constants/routes';
 import { useSidebar } from 'contexts/SidebarContext';
+import { useTemplate } from 'contexts/TemplateContext';
 import ApiService from 'services/apiService';
 import { generateName } from 'utils/nameUtils';
 import { resetState } from 'reducers/componentDux';
@@ -12,7 +12,12 @@ import { SITE_URL } from 'constants/urls';
 
 import './Navbar.scss';
 
-const Navbar = ({ showButtons = true }) => {
+const Navbar = ({
+  showButtons = true,
+  isExamples = false,
+  isExample = false,
+  pathname = '',
+}) => {
   const [navbarState, setNavbarState] = useReducer((s, a) => ({ ...s, ...a }), {
     isLoading: false,
     websiteName: generateName(),
@@ -22,6 +27,7 @@ const Navbar = ({ showButtons = true }) => {
   const [errorTimeout, setErrorTimeout] = useState(undefined);
   const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
+  const { setCurrentTemplate } = useTemplate();
   const components = useSelector((state) => state.components);
 
   const onComplete = async () => {
@@ -67,6 +73,12 @@ const Navbar = ({ showButtons = true }) => {
     }
   };
 
+  const exampleMessage = () => {
+    if (isExamples) return 'Back to Editing!';
+    if (isExample) return 'View Other Examples!';
+    return 'View Example Sites!';
+  };
+
   return (
     <>
       <Modal
@@ -96,10 +108,10 @@ const Navbar = ({ showButtons = true }) => {
                 You can access your portfolio at:
                 <br />
                 <a
-                  href={`${SITE_URL}/static?code=${navbarState.websiteName}`}
+                  href={`${SITE_URL}${STATIC}?code=${navbarState.websiteName}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                >{`${SITE_URL}/static?code=${navbarState.websiteName}`}</a>
+                >{`${SITE_URL}${STATIC}?code=${navbarState.websiteName}`}</a>
               </h3>
               <h4>
                 Note: If you wish to generate another link, you need to refresh
@@ -111,9 +123,22 @@ const Navbar = ({ showButtons = true }) => {
       </Modal>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <Link className="navbar-item navbar__logo" to={MAIN}>
+          <a className="navbar-item navbar__logo" href={`${SITE_URL}${MAIN}`}>
             FOLIO
-          </Link>
+          </a>
+          {(showButtons || isExamples || isExample) && (
+            <div className="navbar-item">
+              <div className="buttons">
+                <a
+                  type="button"
+                  className="button is-dark"
+                  href={`${SITE_URL}${isExamples ? MAIN : EXAMPLES}`}
+                >
+                  {exampleMessage()}
+                </a>
+              </div>
+            </div>
+          )}
         </div>
         {showButtons && (
           <div className="navbar-end">
@@ -147,6 +172,21 @@ const Navbar = ({ showButtons = true }) => {
                   onClick={onComplete}
                 >
                   Complete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {isExample && (
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="button is-info"
+                  onClick={() => setCurrentTemplate(pathname)}
+                >
+                  Use this Template
                 </button>
               </div>
             </div>
