@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavbarLogo = props => {
+const NavbarLogo = (props) => {
   return (
     <img
       src="https://res.cloudinary.com/dwbg1zcql/image/upload/v1579362276/folio-white_version_kaqtob.png"

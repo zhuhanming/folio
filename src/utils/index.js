@@ -9,7 +9,7 @@ const retryPromise = (promise, retriesLeft = 5, interval = 1000) => {
   return new Promise((resolve, reject) => {
     promise()
       .then(resolve)
-      .catch(error => {
+      .catch((error) => {
         setTimeout(() => {
           if (retriesLeft === 1) {
             // reject('maximum retries exceeded');
@@ -27,14 +27,14 @@ const retryPromise = (promise, retriesLeft = 5, interval = 1000) => {
   });
 };
 
-const getYoutubeId = url => {
+const getYoutubeId = (url) => {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
 
   return match && match[2].length === 11 ? match[2] : null;
 };
 
-const getHttpsUrl = url => {
+const getHttpsUrl = (url) => {
   const prefix = 'https://';
   if (url.toLowerCase().substr(0, prefix.length) !== prefix) {
     return prefix + url;
@@ -42,7 +42,7 @@ const getHttpsUrl = url => {
   return url;
 };
 
-const getSoundCloudUrl = url => {
+const getSoundCloudUrl = (url) => {
   const [remove, use] = url.split('src="', 2);
   const [useTwo, removeTwo] = use.split('"><', 2);
   return useTwo;

@@ -17,7 +17,6 @@ const Image = ({ component, index }) => {
   const { images } = component;
 
   const handleDelete = () => {
-    // eslint-disable-next-line no-alert
     const confirmDelete = window.confirm(
       'Are you sure you wish to delete this item?'
     );

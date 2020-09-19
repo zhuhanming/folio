@@ -2,7 +2,7 @@ import React from 'react';
 
 import './TrashIcon.scss';
 
-const TrashIcon = props => {
+const TrashIcon = (props) => {
   return <i className="fas fa-trash delete-button" {...props} />;
 };
 

@@ -16,8 +16,10 @@ import Music from 'components/music';
 import './Portfolio.scss';
 
 const Portfolio = () => {
-  const components = useSelector(state => state.components.components);
-  const componentOrder = useSelector(state => state.components.componentOrder);
+  const components = useSelector((state) => state.components.components);
+  const componentOrder = useSelector(
+    (state) => state.components.componentOrder
+  );
 
   return (
     <Droppable droppableId="main-portfolio" type="portfolio">

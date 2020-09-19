@@ -21,7 +21,7 @@ const TemplateProvider = (props) => {
       toast.error('You are currently not viewing any templates!');
       return;
     }
-    // eslint-disable-next-line no-alert
+
     const confirmReplace = window.confirm(
       'Using this template will replace any ongoing work you might have! Are you sure you wish to continue?'
     );

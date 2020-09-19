@@ -14,7 +14,7 @@ const Message = ({ component, index }) => {
   const dispatch = useDispatch();
   const { text } = component;
   const { register, getValues } = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Message = ({ component, index }) => {
       dispatch(
         updateComponent({
           id: component.id,
-          component: { ...component, text: newText }
+          component: { ...component, text: newText },
         })
       );
       autosize.update(document.querySelectorAll('textarea'));
@@ -43,7 +43,7 @@ const Message = ({ component, index }) => {
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-message"
           {...provided.draggableProps}

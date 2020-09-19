@@ -6,18 +6,18 @@ import rootReducer from 'reducers/rootReducer';
 
 const persistConfig = {
   key: 'folio-app',
-  storage
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const customizedMiddleware = getDefaultMiddleware({
-  serializableCheck: false
+  serializableCheck: false,
 });
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: customizedMiddleware
+  middleware: customizedMiddleware,
 });
 
 export const persistor = persistStore(store);

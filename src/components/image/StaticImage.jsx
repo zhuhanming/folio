@@ -7,7 +7,7 @@ import './Image.scss';
 const StaticImage = ({ component }) => {
   const { images } = component;
 
-  const isEmpty = images.every(ele => ele === '');
+  const isEmpty = images.every((ele) => ele === '');
 
   if (isEmpty) return <></>;
 
@@ -15,10 +15,10 @@ const StaticImage = ({ component }) => {
     <div className="portfolio-image ">
       <div
         className={`portfolio-image__body static-portfolio-image ${
-          images.some(ele => ele !== '') ? 'has-content' : ''
+          images.some((ele) => ele !== '') ? 'has-content' : ''
         }`}
       >
-        {images.map(image =>
+        {images.map((image) =>
           image === '' ? (
             <></>
           ) : (

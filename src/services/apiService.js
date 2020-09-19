@@ -7,12 +7,12 @@ const ApiService = axios.create({
   headers: { 'Content-Type': 'application/json' },
   transformResponse: [
     ...axios.defaults.transformResponse,
-    data => humps.camelizeKeys(data)
+    (data) => humps.camelizeKeys(data),
   ],
   transformRequest: [
-    data => humps.decamelizeKeys(data),
-    ...axios.defaults.transformRequest
-  ]
+    (data) => humps.decamelizeKeys(data),
+    ...axios.defaults.transformRequest,
+  ],
 });
 
 export default ApiService;

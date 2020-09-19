@@ -24,8 +24,8 @@ const Music = ({ component, index }) => {
           id: component.id,
           component: {
             ...component,
-            url: newId
-          }
+            url: newId,
+          },
         })
       );
     }
@@ -40,7 +40,7 @@ const Music = ({ component, index }) => {
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-music"
           {...provided.draggableProps}

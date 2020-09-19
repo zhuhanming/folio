@@ -6,7 +6,7 @@ import {
   setComponents,
   setComponentOrder,
   incrementCounter,
-  updateComponent
+  updateComponent,
 } from 'reducers/componentDux';
 import RightBar from './RightBar';
 import Portfolio from './Portfolio';
@@ -16,14 +16,15 @@ import './Main.scss';
 
 const Main = () => {
   const dispatch = useDispatch();
-  const components = useSelector(state => state.components.components);
-  const componentOrder = useSelector(state => state.components.componentOrder);
+  const components = useSelector((state) => state.components.components);
+  const componentOrder = useSelector(
+    (state) => state.components.componentOrder
+  );
   const componentCounter = useSelector(
-    state => state.components.componentCounter
+    (state) => state.components.componentCounter
   );
 
-  const onDragEnd = result => {
-    console.log(result);
+  const onDragEnd = (result) => {
     const { draggableId, source, destination, type } = result;
 
     if (
@@ -45,8 +46,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'title',
-              text: 'Enter your title here'
-            }
+              text: 'Enter your title here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -56,8 +57,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'subtitle',
-              text: 'Enter your subtitle here'
-            }
+              text: 'Enter your subtitle here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -67,8 +68,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'image',
-              images: ['']
-            }
+              images: [''],
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -78,8 +79,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'caption',
-              text: 'Enter your caption here'
-            }
+              text: 'Enter your caption here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -89,8 +90,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'description',
-              text: 'Enter your description here'
-            }
+              text: 'Enter your description here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -100,8 +101,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'message',
-              text: 'Enter your message here'
-            }
+              text: 'Enter your message here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -111,8 +112,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'video',
-              url: ''
-            }
+              url: '',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -122,8 +123,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'music',
-              url: ''
-            }
+              url: '',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -137,10 +138,10 @@ const Main = () => {
                 {
                   title: 'Enter site title here',
                   image: '',
-                  url: ''
-                }
-              ]
-            }
+                  url: '',
+                },
+              ],
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -150,8 +151,8 @@ const Main = () => {
             [newComponentIndex]: {
               id: newComponentIndex,
               type: 'code',
-              text: '// enter your code here'
-            }
+              text: '// enter your code here',
+            },
           };
           dispatch(setComponents(newComponents));
           break;
@@ -188,8 +189,8 @@ const Main = () => {
           id: componentId,
           component: {
             ...component,
-            images: newImageOrder
-          }
+            images: newImageOrder,
+          },
         })
       );
       return;
@@ -214,8 +215,8 @@ const Main = () => {
           id: componentId,
           component: {
             ...component,
-            sites: newSiteOrder
-          }
+            sites: newSiteOrder,
+          },
         })
       );
     }

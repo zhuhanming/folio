@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SidebarContext = React.createContext();
 
-const SidebarProvider = props => {
+const SidebarProvider = (props) => {
   const [isSidebarShown, setIsSidebarShown] = useState(true);
 
   const toggleSidebar = () => {

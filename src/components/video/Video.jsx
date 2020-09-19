@@ -24,8 +24,8 @@ const Video = ({ component, index }) => {
           id: component.id,
           component: {
             ...component,
-            url: `https://www.youtube.com/embed/${newId}`
-          }
+            url: `https://www.youtube.com/embed/${newId}`,
+          },
         })
       );
     }
@@ -40,7 +40,7 @@ const Video = ({ component, index }) => {
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-video"
           {...provided.draggableProps}

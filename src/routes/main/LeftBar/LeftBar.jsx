@@ -13,7 +13,7 @@ const LeftBar = () => {
     'subtitle',
     'description',
     'caption',
-    'message'
+    'message',
   ];
 
   return (

@@ -11,8 +11,8 @@ const defaultOptions = {
   autoplay: true,
   animationData,
   rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice'
-  }
+    preserveAspectRatio: 'xMidYMid slice',
+  },
 };
 
 const Loading = ({ className = '' }) => {

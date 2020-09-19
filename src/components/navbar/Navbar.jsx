@@ -64,7 +64,6 @@ const Navbar = ({
   };
 
   const onReset = () => {
-    // eslint-disable-next-line no-alert
     const confirmReset = window.confirm(
       'Are you sure you want to reset this portfolio? You will not be able to undo this action.'
     );

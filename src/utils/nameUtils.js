@@ -1359,7 +1359,7 @@ function generateName() {
     'zealous',
     'zesty',
     'zigzag',
-    'rocky'
+    'rocky',
   ];
   const name2 = [
     'people',
@@ -2862,7 +2862,7 @@ function generateName() {
     'yesterday',
     'Thomas',
     'Tom',
-    'Lieuwe'
+    'Lieuwe',
   ];
   const name = `${name1[getRandomInt(0, name1.length + 1)]}-${
     name2[getRandomInt(0, name2.length + 1)]

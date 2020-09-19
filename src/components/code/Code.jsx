@@ -14,7 +14,7 @@ const Code = ({ component, index }) => {
   const dispatch = useDispatch();
   const { text } = component;
   const { register, getValues, setValue } = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Code = ({ component, index }) => {
       dispatch(
         updateComponent({
           id: component.id,
-          component: { ...component, text: newText }
+          component: { ...component, text: newText },
         })
       );
       autosize.update(document.querySelectorAll('textarea'));
@@ -41,7 +41,7 @@ const Code = ({ component, index }) => {
     if (confirmDelete) dispatch(deleteComponent(component.id));
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     const textarea = document.getElementById(component.id);
     // support tab on textarea
     if (event.keyCode === 9) {
@@ -62,7 +62,7 @@ const Code = ({ component, index }) => {
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-code"
           {...provided.draggableProps}

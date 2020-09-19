@@ -10,7 +10,7 @@ const ImagePreview = ({ index, image, component, size }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Draggable draggableId={`${component.id}_${index}_${image}`} index={index}>
-      {provided => (
+      {(provided) => (
         <>
           <Modal isOpen={isModalOpen} handleClose={() => setIsModalOpen(false)}>
             <img

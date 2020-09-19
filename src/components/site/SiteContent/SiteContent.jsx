@@ -13,7 +13,7 @@ const SiteContent = ({ index, site, component }) => {
   const { image, text, url } = site;
   const dispatch = useDispatch();
   const { register, getValues } = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   useEffect(() => {
@@ -27,15 +27,15 @@ const SiteContent = ({ index, site, component }) => {
       newSites.splice(index, 1);
       newSites.splice(index, 0, {
         ...component.sites[index],
-        text: newText
+        text: newText,
       });
       dispatch(
         updateComponent({
           id: component.id,
           component: {
             ...component,
-            sites: newSites
-          }
+            sites: newSites,
+          },
         })
       );
       autosize.update(document.querySelectorAll('textarea'));
@@ -47,7 +47,7 @@ const SiteContent = ({ index, site, component }) => {
       draggableId={`${component.id}_${index}_${JSON.stringify(site)}`}
       index={index}
     >
-      {provided => (
+      {(provided) => (
         <div className="site-preview__container">
           <div
             className="site-preview__flex overlay"
