@@ -2,18 +2,9 @@ import React, { useEffect, useState, useReducer } from 'react';
 import { useLocation } from 'react-router-dom';
 import qs from 'qs';
 
-import StaticTitle from 'components/title/StaticTitle';
-import StaticSubtitle from 'components/subtitle/StaticSubtitle';
-import StaticImage from 'components/image/StaticImage';
-import StaticCaption from 'components/caption/StaticCaption';
-import StaticDescription from 'components/description/StaticDescription';
-import StaticMessage from 'components/message/StaticMessage';
-import StaticVideo from 'components/video/StaticVideo';
-import StaticSite from 'components/site/StaticSite';
-import StaticCode from 'components/code/StaticCode';
-import StaticMusic from 'components/music/StaticMusic';
 import ApiService from 'services/apiService';
 import Loading from 'components/loading';
+import ComponentRenderer from 'components/componentRenderer';
 
 import '../main/Main.scss';
 import './Static.scss';
@@ -23,10 +14,10 @@ const Static = () => {
   const [components, setComponents] = useState(null);
   const [state, setState] = useReducer((s, a) => ({ ...s, ...a }), {
     isLoading: true,
-    isError: false
+    isError: false,
   });
   const { code } = qs.parse(location.search, {
-    ignoreQueryPrefix: true
+    ignoreQueryPrefix: true,
   });
   // const components = useSelector(state => state.components.components);
   // const componentOrder = useSelector(state => state.components.componentOrder);
@@ -72,35 +63,7 @@ const Static = () => {
   return (
     <div className="static">
       <div className="static__portfolio portfolio">
-        {components.componentOrder.map(componentId => {
-          const component = components.components[componentId];
-          switch (component.type) {
-            case 'title':
-              return <StaticTitle key={componentId} component={component} />;
-            case 'subtitle':
-              return <StaticSubtitle key={componentId} component={component} />;
-            case 'image':
-              return <StaticImage key={componentId} component={component} />;
-            case 'caption':
-              return <StaticCaption key={componentId} component={component} />;
-            case 'description':
-              return (
-                <StaticDescription key={componentId} component={component} />
-              );
-            case 'message':
-              return <StaticMessage key={componentId} component={component} />;
-            case 'video':
-              return <StaticVideo key={componentId} component={component} />;
-            case 'music':
-              return <StaticMusic key={componentId} component={component} />;
-            case 'site':
-              return <StaticSite key={componentId} component={component} />;
-            case 'code':
-              return <StaticCode key={componentId} component={component} />;
-            default:
-              return <></>;
-          }
-        })}
+        <ComponentRenderer components={components} />
       </div>
     </div>
   );
