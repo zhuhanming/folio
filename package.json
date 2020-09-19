@@ -1,7 +1,8 @@
 {
-  "name": "hacknroll-app",
+  "name": "folio",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/zhuhanming/folio",
   "dependencies": {
     "@crello/react-lottie": "0.0.9",
     "@reduxjs/toolkit": "^1.4.0",
