@@ -1,51 +1,67 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
+import imageCompression from 'browser-image-compression';
 
 import { imageTypes } from 'constants/fileTypes';
 import { updateComponent } from 'reducers/componentDux';
+import { CLOUDINARY_UPLOAD_URL } from 'constants/urls';
 
 import './UploadImage.scss';
 
 const UploadImage = ({ index, component, size }) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const onDrop = useCallback(
-    acceptedFiles => {
+    (acceptedFiles) => {
       if (acceptedFiles.length > 1) {
         toast.error('You can only upload one image!');
         return;
       }
-      acceptedFiles.forEach(file => {
-        if (imageTypes.every(type => file.type !== type)) {
+      acceptedFiles.forEach(async (file) => {
+        if (imageTypes.every((type) => file.type !== type)) {
           toast.error(`'${file.type}' is not a supported format`);
           return;
         }
-        if (file.size > 1048576) {
-          toast.error('Your file needs to be smaller than 1MB!');
-          return;
-        }
-        const reader = new FileReader();
-        reader.onabort = () => toast.error('The uploading was aborted!');
-        reader.onerror = () =>
-          toast.error('An error occurred while uploading!');
-        reader.onload = () => {
-          const url = reader.result;
-          const newImages = Array.from(component.images);
-          newImages.splice(index, 1);
-          newImages.splice(index, 0, url);
-          dispatch(
-            updateComponent({
-              id: component.id,
-              component: {
-                ...component,
-                images: newImages
-              }
-            })
-          );
+        const uploadImage = async (image) => {
+          setIsLoading(true);
+          try {
+            const compressedFile = await imageCompression(image, {
+              maxSizeMB: 1,
+            });
+            const formData = new FormData();
+            formData.append('file', compressedFile);
+            formData.append(
+              'upload_preset',
+              process.env.REACT_APP_UPLOAD_PRESET
+            );
+            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+              method: 'POST',
+              body: formData,
+            });
+            const { url } = await response.json();
+            const newImages = Array.from(component.images);
+            newImages.splice(index, 1);
+            newImages.splice(index, 0, url);
+            setIsLoading(false);
+            dispatch(
+              updateComponent({
+                id: component.id,
+                component: {
+                  ...component,
+                  images: newImages,
+                },
+              })
+            );
+            toast.success('Image uploaded!');
+          } catch (e) {
+            toast.error('Failed to upload! Try again!');
+            setIsLoading(false);
+          }
         };
-        reader.readAsDataURL(file);
+        uploadImage(file);
       });
     },
     [component, dispatch, index]
@@ -55,10 +71,10 @@ const UploadImage = ({ index, component, size }) => {
 
   return (
     <Draggable draggableId={`${component.id}_${index}_`} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           {...getRootProps()}
-          key={index}
+          key={`upload-image-${component.id}-${index}`}
           {...provided.draggableProps}
           ref={provided.innerRef}
           {...provided.dragHandleProps}
@@ -68,8 +84,13 @@ const UploadImage = ({ index, component, size }) => {
           }`}
         >
           <div className="image-upload">
-            <input {...getInputProps()} />
-            <p>Drop your image here or click to upload your image!</p>
+            {!isLoading && (
+              <>
+                <input {...getInputProps()} />
+                <p>Drop your image here or click to upload your image!</p>
+              </>
+            )}
+            {isLoading && <p>Uploading...</p>}
           </div>
         </div>
       )}

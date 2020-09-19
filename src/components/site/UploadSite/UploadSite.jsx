@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import autosize from 'autosize';
+import imageCompression from 'browser-image-compression';
 
 import { imageTypes } from 'constants/fileTypes';
 import { updateComponent } from 'reducers/componentDux';
+import { CLOUDINARY_UPLOAD_URL } from 'constants/urls';
 
 import './UploadSite.scss';
 
@@ -15,49 +17,63 @@ const UploadImage = ({ index, component, site }) => {
   const dispatch = useDispatch();
   const { text } = site;
   const { register, getValues } = useForm({
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     autosize(document.querySelectorAll('textarea'));
   });
   const onDrop = useCallback(
-    acceptedFiles => {
+    (acceptedFiles) => {
       if (acceptedFiles.length > 1) {
         toast.error('You can only upload one image!');
         return;
       }
-      acceptedFiles.forEach(file => {
-        if (imageTypes.every(type => file.type !== type)) {
+      acceptedFiles.forEach((file) => {
+        if (imageTypes.every((type) => file.type !== type)) {
           toast.error(`'${file.type}' is not a supported format`);
           return;
         }
-        if (file.size > 524288) {
-          toast.error('Your file needs to be smaller than 500KB!');
-          return;
-        }
-        const reader = new FileReader();
-        reader.onabort = () => toast.error('The uploading was aborted!');
-        reader.onerror = () =>
-          toast.error('An error occurred while uploading!');
-        reader.onload = () => {
-          const url = reader.result;
-          const newSites = Array.from(component.sites);
-          newSites.splice(index, 1);
-          newSites.splice(index, 0, {
-            ...component.sites[index],
-            image: url
-          });
-          dispatch(
-            updateComponent({
-              id: component.id,
-              component: {
-                ...component,
-                sites: newSites
-              }
-            })
-          );
+        const uploadImage = async (image) => {
+          setIsLoading(true);
+          try {
+            const compressedFile = await imageCompression(image, {
+              maxSizeMB: 1,
+            });
+            const formData = new FormData();
+            formData.append('file', compressedFile);
+            formData.append(
+              'upload_preset',
+              process.env.REACT_APP_UPLOAD_PRESET
+            );
+            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+              method: 'POST',
+              body: formData,
+            });
+            const { url } = await response.json();
+            const newSites = Array.from(component.sites);
+            newSites.splice(index, 1);
+            newSites.splice(index, 0, {
+              ...component.sites[index],
+              image: url,
+            });
+            setIsLoading(false);
+            dispatch(
+              updateComponent({
+                id: component.id,
+                component: {
+                  ...component,
+                  sites: newSites,
+                },
+              })
+            );
+            toast.success('Image uploaded!');
+          } catch (e) {
+            toast.error('Failed to upload! Try again!');
+            setIsLoading(false);
+          }
         };
-        reader.readAsDataURL(file);
+        uploadImage(file);
       });
     },
     [component, dispatch, index]
@@ -72,15 +88,15 @@ const UploadImage = ({ index, component, site }) => {
       newSites.splice(index, 1);
       newSites.splice(index, 0, {
         ...component.sites[index],
-        text: newText
+        text: newText,
       });
       dispatch(
         updateComponent({
           id: component.id,
           component: {
             ...component,
-            sites: newSites
-          }
+            sites: newSites,
+          },
         })
       );
       autosize.update(document.querySelectorAll('textarea'));
@@ -92,7 +108,7 @@ const UploadImage = ({ index, component, site }) => {
       draggableId={`${component.id}_${index}_${JSON.stringify(site)}`}
       index={index}
     >
-      {provided => (
+      {(provided) => (
         <div
           key={index}
           {...provided.draggableProps}
@@ -100,10 +116,15 @@ const UploadImage = ({ index, component, site }) => {
           className="site-upload"
         >
           <div className="image-upload" {...getRootProps()}>
-            <input {...getInputProps()} />
-            <p {...provided.dragHandleProps}>
-              Drop an image to go with your site here!
-            </p>
+            {!isLoading && (
+              <>
+                <input {...getInputProps()} />
+                <p {...provided.dragHandleProps}>
+                  Drop an image to go with your site here!
+                </p>
+              </>
+            )}
+            {isLoading && <p>Uploading...</p>}
           </div>
           <textarea
             defaultValue={text}
