@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,42 +17,48 @@ const Navbar = ({ showButtons = true }) => {
     isLoading: false,
     websiteName: generateName(),
     isModalOpen: false,
-    isError: false
+    isError: false,
   });
+  const [errorTimeout, setErrorTimeout] = useState(undefined);
   const dispatch = useDispatch();
   const { toggleSidebar } = useSidebar();
-  const components = useSelector(state => state.components);
+  const components = useSelector((state) => state.components);
 
   const onComplete = async () => {
+    if (errorTimeout) {
+      clearTimeout(errorTimeout);
+      setErrorTimeout(undefined);
+    }
     setNavbarState({
       isLoading: true,
       isModalOpen: true,
-      isError: false
+      isError: false,
     });
     try {
       const responses = await ApiService.post('/pages', {
         newName: navbarState.websiteName,
         pageJson: JSON.stringify({
-          ...components
-        })
+          ...components,
+        }),
       });
       if (responses.status === 200) {
         setNavbarState({ isLoading: false });
       } else {
         setNavbarState({
           isLoading: false,
-          isError: true
+          isError: true,
         });
       }
     } catch (error) {
       setNavbarState({
         isLoading: false,
-        isError: true
+        isError: true,
       });
     }
   };
 
   const onReset = () => {
+    // eslint-disable-next-line no-alert
     const confirmReset = window.confirm(
       'Are you sure you want to reset this portfolio? You will not be able to undo this action.'
     );
@@ -65,13 +71,16 @@ const Navbar = ({ showButtons = true }) => {
     <>
       <Modal
         isOpen={navbarState.isModalOpen}
-        handleClose={() =>
+        handleClose={() => {
           setNavbarState({
             isModalOpen: false,
             isLoading: false,
-            isError: false
-          })
-        }
+          });
+          const t = setTimeout(() => {
+            setNavbarState({ isError: false });
+          }, 500);
+          setErrorTimeout(t);
+        }}
       >
         <div className="complete-modal">
           {navbarState.isLoading && <h1 className="title">Loading...</h1>}
