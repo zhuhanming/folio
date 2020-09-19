@@ -17,10 +17,14 @@ const Image = ({ component, index }) => {
   const { images } = component;
 
   const handleDelete = () => {
+    // eslint-disable-next-line no-alert
     const confirmDelete = window.confirm(
       'Are you sure you wish to delete this item?'
     );
-    if (confirmDelete) dispatch(deleteComponent(component.id));
+    if (confirmDelete) {
+      // TODO: Add deletion of images
+      dispatch(deleteComponent(component.id));
+    }
   };
 
   const handleAdd = () => {
@@ -35,15 +39,15 @@ const Image = ({ component, index }) => {
         id: component.id,
         component: {
           ...component,
-          images: newImages
-        }
+          images: newImages,
+        },
       })
     );
   };
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-image"
           {...provided.draggableProps}
@@ -60,7 +64,7 @@ const Image = ({ component, index }) => {
                 {...providedTwo.droppableProps}
                 ref={providedTwo.innerRef}
                 className={`portfolio-image__body ${
-                  images.some(ele => ele !== '') ? 'has-content' : ''
+                  images.some((ele) => ele !== '') ? 'has-content' : ''
                 } ${
                   snapshotTwo.isDraggingOver
                     ? 'portfolio-image__dragged-over'
@@ -74,6 +78,7 @@ const Image = ({ component, index }) => {
                       component={component}
                       size={images.length}
                       // eslint-disable-next-line react/no-array-index-key
+                      key={`upload-image-${component.id}-${indexTwo}`}
                     />
                   ) : (
                     <ImagePreview
@@ -82,6 +87,7 @@ const Image = ({ component, index }) => {
                       image={image}
                       size={images.length}
                       // eslint-disable-next-line react/no-array-index-key
+                      key={`preview-image-${component.id}-${indexTwo}`}
                     />
                   )
                 )}

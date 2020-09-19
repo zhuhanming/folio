@@ -21,7 +21,7 @@ const Site = ({ component, index }) => {
 
   const { register, getValues, handleSubmit } = useForm();
 
-  const onSubmit = id => {
+  const onSubmit = (id) => {
     const newUrl = getValues()[`url-${id}`];
     if (newUrl !== sites[id].url) {
       const finalUrl = getHttpsUrl(newUrl);
@@ -29,25 +29,29 @@ const Site = ({ component, index }) => {
       newSites[id] = {
         ...sites[id],
         url: finalUrl,
-        text: 'Enter site title here'
+        text: 'Enter site title here',
       };
       dispatch(
         updateComponent({
           id: component.id,
           component: {
             ...component,
-            sites: newSites
-          }
+            sites: newSites,
+          },
         })
       );
     }
   };
 
   const handleDelete = () => {
+    // eslint-disable-next-line no-alert
     const confirmDelete = window.confirm(
       'Are you sure you wish to delete this item?'
     );
-    if (confirmDelete) dispatch(deleteComponent(component.id));
+    if (confirmDelete) {
+      // TODO: Add deletion of images
+      dispatch(deleteComponent(component.id));
+    }
   };
 
   const handleAdd = () => {
@@ -59,22 +63,22 @@ const Site = ({ component, index }) => {
     newSites.push({
       image: '',
       url: '',
-      text: 'Enter site title here'
+      text: 'Enter site title here',
     });
     dispatch(
       updateComponent({
         id: component.id,
         component: {
           ...component,
-          sites: newSites
-        }
+          sites: newSites,
+        },
       })
     );
   };
 
   return (
     <Draggable draggableId={component.id} index={index}>
-      {provided => (
+      {(provided) => (
         <div
           className="portfolio-site"
           {...provided.draggableProps}
@@ -103,8 +107,10 @@ const Site = ({ component, index }) => {
                         component.id
                       }_${indexTwo}_${JSON.stringify(site)}`}
                       index={index}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`site-draggable-${component.id}-${indexTwo}`}
                     >
-                      {providedThree => (
+                      {(providedThree) => (
                         <form
                           onSubmit={handleSubmit(() => onSubmit(indexTwo))}
                           className="portfolio-site__form"
@@ -130,12 +136,16 @@ const Site = ({ component, index }) => {
                       index={indexTwo}
                       component={component}
                       site={site}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`site-upload-${component.id}-${indexTwo}`}
                     />
                   ) : (
                     <SiteContent
                       index={indexTwo}
                       component={component}
                       site={site}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`site-content-${component.id}-${indexTwo}`}
                     />
                   )
                 )}
