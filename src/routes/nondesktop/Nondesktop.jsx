@@ -1,25 +1,38 @@
 import React from 'react';
 
+import Container from 'components/container';
+import StaticTitle from 'components/title/StaticTitle';
+import StaticDescription from 'components/description/StaticDescription';
+import StaticSubtitle from 'components/subtitle/StaticSubtitle';
+import templates from 'routes/examples/templates';
+import community from 'routes/examples/communityExamples';
+import { renderCommunity, renderTemplates } from 'utils/exampleUtils';
+
 import './Nondesktop.scss';
 
 const Nondesktop = () => {
   return (
-    <div className="non-desktop">
-      <div className="columns">
-        <div className="column is-full">
-          <article className="message is-info">
-            <div className="message-header">
-              <p>Welcome to Folio</p>
-            </div>
-            <div className="message-body">
-              Unfortunate, we currently do not support non-desktop usage. We
-              strongly recommend you to try our app on your computer. Thank you
-              for understanding.
-            </div>
-          </article>
+    <Container>
+      <StaticTitle component={{ text: 'Welcome to Folio!' }} />
+      <article className="message is-info">
+        <div className="message-body">
+          Unfortunately, we currently do not support the creation of portfolios
+          on mobile or tablet. We strongly recommend trying our app on your
+          computer.
         </div>
-      </div>
-    </div>
+      </article>
+      <StaticSubtitle
+        component={{ text: 'Sample Portfolios Built with Folio' }}
+      />
+      <StaticDescription
+        component={{
+          text:
+            'Portfolios built with Folio are all perfectly mobile and tablet responsive!',
+        }}
+      />
+      {renderTemplates(templates)}
+      {renderCommunity(community)}
+    </Container>
   );
 };
 
