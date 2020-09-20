@@ -8,6 +8,8 @@ import ComponentRenderer from 'components/componentRenderer';
 
 import Container from 'components/container';
 import { renderCommunity, renderTemplates } from 'utils/exampleUtils';
+import Modal from 'components/modal';
+import { useModal } from 'contexts/ModalContext';
 import {
   communityDescription,
   communityNoSitesMessage,
@@ -25,6 +27,7 @@ import '../static/Static.scss';
 
 const Examples = (props) => {
   const id = props?.match?.params?.id ?? undefined;
+  const { toggleModal, isModalVisible } = useModal();
 
   if (id) {
     const template = Object.keys(templates)[parseInt(id, 10) - 1];
@@ -36,31 +39,39 @@ const Examples = (props) => {
   }
 
   return (
-    <Container>
-      <StaticTitle key="example-title" component={exampleTitle} />
-      <StaticDescription
-        key="example-description"
-        component={exampleDescription}
-      />
-      <StaticSubtitle key="template-subtitle" component={templateSubtitle} />
-      <StaticDescription
-        key="template-description"
-        component={templateDescription}
-      />
-      {renderTemplates(templates)}
-      <StaticSubtitle key="community-subtitle" component={communitySubtitle} />
-      <StaticDescription
-        key="community-description"
-        component={communityDescription}
-      />
-      {renderCommunity(community)}
-      {Object.keys(community).length === 0 && (
-        <StaticMessage
-          index="empty-community-message"
-          component={communityNoSitesMessage}
+    <>
+      <Modal isOpen={isModalVisible} handleClose={toggleModal}>
+        <div className="example-modal">Hello</div>
+      </Modal>
+      <Container>
+        <StaticTitle key="example-title" component={exampleTitle} />
+        <StaticDescription
+          key="example-description"
+          component={exampleDescription}
         />
-      )}
-    </Container>
+        <StaticSubtitle key="template-subtitle" component={templateSubtitle} />
+        <StaticDescription
+          key="template-description"
+          component={templateDescription}
+        />
+        {renderTemplates(templates)}
+        <StaticSubtitle
+          key="community-subtitle"
+          component={communitySubtitle}
+        />
+        <StaticDescription
+          key="community-description"
+          component={communityDescription}
+        />
+        {renderCommunity(community)}
+        {Object.keys(community).length === 0 && (
+          <StaticMessage
+            index="empty-community-message"
+            component={communityNoSitesMessage}
+          />
+        )}
+      </Container>
+    </>
   );
 };
 
