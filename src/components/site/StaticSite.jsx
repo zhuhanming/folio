@@ -19,7 +19,11 @@ const Site = ({ component }) => {
           site.url === '' ? (
             <></>
           ) : (
-            <StaticSiteContent component={component} site={site} />
+            <StaticSiteContent
+              component={component}
+              site={site}
+              key={`static-site-${site.url}`}
+            />
           )
         )}
       </div>

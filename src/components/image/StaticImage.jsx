@@ -12,7 +12,7 @@ const StaticImage = ({ component }) => {
   if (isEmpty) return <></>;
 
   return (
-    <div className="portfolio-image ">
+    <div className="portfolio-image">
       <div
         className={`portfolio-image__body static-portfolio-image ${
           images.some((ele) => ele !== '') ? 'has-content' : ''
@@ -26,6 +26,7 @@ const StaticImage = ({ component }) => {
               component={component}
               image={image}
               size={images.length}
+              key={`static-image-${component.id}`}
             />
           )
         )}
