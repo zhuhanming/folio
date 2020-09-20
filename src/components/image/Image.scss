@@ -16,19 +16,13 @@
     overflow: hidden;
 
     &.has-content {
-      height: 30rem;
+      height: auto;
     }
 
     @media screen and (max-width: $tablet) {
       &.static-portfolio-image {
         flex-direction: column;
         height: auto;
-
-        div {
-          width: 100%;
-          margin: 2rem;
-          height: 20rem;
-        }
       }
     }
   }

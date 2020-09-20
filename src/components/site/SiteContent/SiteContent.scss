@@ -1,12 +1,15 @@
 .site-preview {
   object-fit: cover;
+  width: 100%;
+  min-height: 17rem;
 
   &__flex {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    height: 15rem;
+    height: 100%;
+    max-height: 17rem;
     border-radius: 8px;
   }
 
@@ -22,7 +25,7 @@
   &__container {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 45%;
   }
 
   &__input {
