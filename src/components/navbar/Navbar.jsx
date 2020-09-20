@@ -115,6 +115,21 @@ const Navbar = ({
           </div>
         </div>
       )}
+      {isExamples && !isMobile && (
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <button
+                type="button"
+                className="button is-primary"
+                onClick={toggleModal}
+              >
+                Showcase Your Site!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

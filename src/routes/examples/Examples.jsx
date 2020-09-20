@@ -41,7 +41,57 @@ const Examples = (props) => {
   return (
     <>
       <Modal isOpen={isModalVisible} handleClose={toggleModal}>
-        <div className="example-modal">Hello</div>
+        <div className="example-modal">
+          <h1 className="title">Share your site with the world!</h1>
+
+          <form
+            className="example-modal__form"
+            name="submit-example"
+            method="post"
+          >
+            <input type="hidden" name="form-name" value="submit-example" />
+            <div className="field">
+              <label className="label" htmlFor="url">
+                URL of your site
+              </label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="url"
+                  name="url"
+                  required
+                  placeholder="https://folio-hnr.netlify.app/static?code=example"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label" htmlFor="url">
+                Name for your site
+              </label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Name for your site"
+                />
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                <button
+                  type="submit"
+                  className="example-modal__form--button button is-link"
+                >
+                  Send it in!
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <h4>Note: We will only showcase sites build with Folio</h4>
+        </div>
       </Modal>
       <Container>
         <StaticTitle key="example-title" component={exampleTitle} />
