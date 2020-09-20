@@ -16,6 +16,7 @@ const Navbar = ({
   showButtons = true,
   isExamples = false,
   isExample = false,
+  isMobile,
   pathname = '',
 }) => {
   const [navbarState, setNavbarState] = useReducer((s, a) => ({ ...s, ...a }), {
@@ -63,12 +64,18 @@ const Navbar = ({
     }
   };
 
+  const resetStatePromise = (myDispatch) =>
+    new Promise((resolve, _reject) => {
+      myDispatch(resetState());
+      resolve();
+    });
+
   const onReset = () => {
     const confirmReset = window.confirm(
       'Are you sure you want to reset this portfolio? You will not be able to undo this action.'
     );
     if (confirmReset) {
-      dispatch(resetState());
+      resetStatePromise(dispatch).then(() => window.location.reload());
     }
   };
 
@@ -125,7 +132,7 @@ const Navbar = ({
           <a className="navbar-item navbar__logo" href={`${SITE_URL}${MAIN}`}>
             FOLIO
           </a>
-          {(showButtons || isExamples || isExample) && (
+          {(showButtons || (isExamples && !isMobile) || isExample) && (
             <div className="navbar-item">
               <div className="buttons">
                 <a
@@ -176,7 +183,7 @@ const Navbar = ({
             </div>
           </div>
         )}
-        {isExample && (
+        {isExample && !isMobile && (
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">

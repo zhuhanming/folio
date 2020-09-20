@@ -29,6 +29,7 @@ const MainApp = () => {
       <div className="app">
         <Navbar
           showButtons={pathname === MAIN && !isMobile}
+          isMobile={isMobile}
           isExamples={pathname === EXAMPLES}
           isExample={
             pathname.split(EXAMPLES, 2).length === 2 &&
