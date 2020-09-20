@@ -1,8 +1,9 @@
-@import 'assets/scss/main';
+@import '../assets/scss/main';
 
 .app {
   height: auto;
   max-height: 100%;
+  min-height: 100vh;
   overflow: initial;
   padding-top: $navbar-height;
 }

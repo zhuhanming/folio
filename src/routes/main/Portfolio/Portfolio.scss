@@ -1,6 +1,8 @@
+@import '../../../assets/scss/main.scss';
+
 .portfolio {
   padding: 1.5rem 16vw 7rem 16vw;
-  min-height: 100%;
+  min-height: calc(100vh - #{$navbar-height});
 
   &__dragged-over {
     background-color: rgba(185, 223, 215, 0.3);
