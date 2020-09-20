@@ -90,7 +90,7 @@ const Examples = (props) => {
             </div>
           </form>
 
-          <h4>Note: We will only showcase sites build with Folio</h4>
+          <h4>Note: We will only showcase sites built with Folio</h4>
         </div>
       </Modal>
       <Container>
