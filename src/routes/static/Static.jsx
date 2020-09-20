@@ -5,6 +5,7 @@ import qs from 'qs';
 import ApiService from 'services/apiService';
 import Loading from 'components/loading';
 import ComponentRenderer from 'components/componentRenderer';
+import Container from 'components/container';
 
 import '../main/Main.scss';
 import './Static.scss';
@@ -61,11 +62,9 @@ const Static = () => {
     );
 
   return (
-    <div className="static">
-      <div className="static__portfolio portfolio">
-        <ComponentRenderer components={components} />
-      </div>
-    </div>
+    <Container>
+      <ComponentRenderer components={components} />
+    </Container>
   );
 };
 

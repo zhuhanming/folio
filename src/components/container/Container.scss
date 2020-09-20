@@ -1,0 +1,12 @@
+@import '../../assets/scss/main.scss';
+
+.container__outer {
+  @media screen and (max-width: $tablet) {
+    .container__inner {
+      padding: 0 1rem !important;
+      margin-bottom: 5rem;
+    }
+  }
+  height: 100%;
+  // overflow: scroll;
+}
