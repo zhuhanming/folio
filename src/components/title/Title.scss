@@ -7,6 +7,7 @@
 
   &__input {
     flex: 1;
+    white-space: pre-wrap;
     &.title:not(:last-child) {
       margin-bottom: 0;
     }

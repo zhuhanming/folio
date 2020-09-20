@@ -79,7 +79,7 @@ const templateTwo = {
     'component-10': {
       id: 'component-10',
       type: 'message',
-      text: '\n但是我的普通话现在真的很糟糕!',
+      text: '但是我的普通话现在真的很糟糕!',
     },
     'component-11': {
       id: 'component-11',
