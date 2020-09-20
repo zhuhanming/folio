@@ -28,7 +28,7 @@ const MainApp = () => {
     <Router>
       <div className="app">
         <Navbar
-          showButtons={pathname === MAIN && !isMobile}
+          showButtons={(pathname === MAIN || pathname === ROOT) && !isMobile}
           isMobile={isMobile}
           isExamples={pathname === EXAMPLES}
           isExample={
