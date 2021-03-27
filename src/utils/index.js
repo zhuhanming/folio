@@ -5,8 +5,8 @@
 // };
 
 // https://dev.to/goenning/how-to-retry-when-react-lazy-fails-mb5
-const retryPromise = (promise, retriesLeft = 5, interval = 1000) => {
-  return new Promise((resolve, reject) => {
+const retryPromise = (promise, retriesLeft = 5, interval = 1000) =>
+  new Promise((resolve, reject) => {
     promise()
       .then(resolve)
       .catch((error) => {
@@ -25,7 +25,6 @@ const retryPromise = (promise, retriesLeft = 5, interval = 1000) => {
         }, interval);
       });
   });
-};
 
 const getYoutubeId = (url) => {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;

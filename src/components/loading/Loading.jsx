@@ -15,14 +15,12 @@ const defaultOptions = {
   },
 };
 
-const Loading = ({ className = '' }) => {
-  return (
-    <div className={`loading ${className}`}>
-      <FadeIn>
-        <Lottie config={defaultOptions} width="auto" height="auto" />
-      </FadeIn>
-    </div>
-  );
-};
+const Loading = ({ className = '' }) => (
+  <div className={`loading ${className}`}>
+    <FadeIn>
+      <Lottie config={defaultOptions} width="auto" height="auto" />
+    </FadeIn>
+  </div>
+);
 
 export default Loading;

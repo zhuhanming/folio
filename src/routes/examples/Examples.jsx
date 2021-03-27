@@ -26,6 +26,7 @@ import './Examples.scss';
 import '../static/Static.scss';
 
 const Examples = (props) => {
+  // eslint-disable-next-line react/destructuring-assignment
   const id = props?.match?.params?.id ?? undefined;
   const { toggleModal, isModalVisible } = useModal();
 

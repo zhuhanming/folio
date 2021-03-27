@@ -16,8 +16,8 @@ const pairUp = (keys) => {
   return result;
 };
 
-export const renderTemplates = (templates) => {
-  return pairUp(Object.keys(templates)).map((keys, index) => (
+export const renderTemplates = (templates) =>
+  pairUp(Object.keys(templates)).map((keys, index) => (
     <StaticSite
       key={`template-${keys[0]}${keys[1] ? `-${keys[1]}` : ''}`}
       component={{
@@ -29,10 +29,9 @@ export const renderTemplates = (templates) => {
       }}
     />
   ));
-};
 
-export const renderCommunity = (community) => {
-  return pairUp(Object.keys(community)).map((keys) => (
+export const renderCommunity = (community) =>
+  pairUp(Object.keys(community)).map((keys) => (
     <StaticSite
       key={`community-${keys[0]}${keys[1] ? `-${keys[1]}` : ''}`}
       component={{
@@ -44,4 +43,3 @@ export const renderCommunity = (community) => {
       }}
     />
   ));
-};
