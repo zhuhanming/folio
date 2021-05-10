@@ -52,8 +52,7 @@ const Caption = ({ component, index }) => {
           <DragHandle {...provided.dragHandleProps} />
           <textarea
             defaultValue={text}
-            name="text"
-            ref={register({ required: true })}
+            {...register('text', { required: true })}
             className="portfolio-caption__input caption is-size-6"
             onBlur={onBlur}
             rows={1}

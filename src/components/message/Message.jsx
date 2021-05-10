@@ -55,8 +55,7 @@ const Message = ({ component, index }) => {
             <div className="message-body portfolio-message__body">
               <textarea
                 defaultValue={text}
-                name="text"
-                ref={register({ required: true })}
+                {...register('text', { required: true })}
                 className="portfolio-message__input is-size-6"
                 onBlur={onBlur}
                 rows={1}

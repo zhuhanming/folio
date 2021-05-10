@@ -74,8 +74,7 @@ const Code = ({ component, index }) => {
               <textarea
                 id={component.id}
                 defaultValue={text}
-                name="text"
-                ref={register({ required: true })}
+                {...register('text', { required: true })}
                 className="portfolio-code__input code is-size-6"
                 onBlur={onBlur}
                 rows={5}

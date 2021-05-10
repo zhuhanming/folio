@@ -52,8 +52,7 @@ const Title = ({ component, index }) => {
           <DragHandle {...provided.dragHandleProps} />
           <textarea
             defaultValue={text}
-            name="text"
-            ref={register({ required: true })}
+            {...register('text', { required: true })}
             className="portfolio-title__input title"
             onBlur={onBlur}
             rows={1}

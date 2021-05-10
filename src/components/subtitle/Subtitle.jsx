@@ -52,8 +52,7 @@ const Subtitle = ({ component, index }) => {
           <DragHandle {...provided.dragHandleProps} />
           <textarea
             defaultValue={text}
-            name="text"
-            ref={register({ required: true })}
+            {...register('text', { required: true })}
             className="portfolio-subtitle__input subtitle"
             onBlur={onBlur}
             rows={1}

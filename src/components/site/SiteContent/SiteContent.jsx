@@ -65,8 +65,7 @@ const SiteContent = ({ index, site, component }) => {
           </div>
           <textarea
             defaultValue={text}
-            name="text"
-            ref={register({ required: true })}
+            {...register('text', { required: true })}
             className="site-preview__input is-size-6"
             onBlur={onBlur}
             rows={1}

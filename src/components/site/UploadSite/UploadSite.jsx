@@ -114,8 +114,7 @@ const UploadImage = ({ index, component, site }) => {
           </div>
           <textarea
             defaultValue={text}
-            name="text"
-            ref={register({ required: true })}
+            {...register('text', { required: true })}
             className="site-upload__input is-size-6"
             onBlur={onBlur}
             rows={1}

@@ -54,8 +54,7 @@ const Music = ({ component, index }) => {
             >
               <input
                 type="text"
-                name="url"
-                ref={register({ required: true })}
+                {...register('url', { required: true })}
                 className="portfolio-music__input music is-size-6"
                 placeholder="Enter SoundCloud embed code here"
               />

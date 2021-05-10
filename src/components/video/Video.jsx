@@ -54,8 +54,7 @@ const Video = ({ component, index }) => {
             >
               <input
                 type="text"
-                name="url"
-                ref={register({ required: true })}
+                {...register('url', { required: true })}
                 className="portfolio-video__input video is-size-6"
                 placeholder="Enter YouTube URL here"
               />

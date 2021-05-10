@@ -121,9 +121,7 @@ const Site = ({ component, index }) => {
                         >
                           <input
                             type="text"
-                            name={`url-${indexTwo}`}
-                            // ref={register({ required: true })}
-                            ref={register}
+                            {...register(`url-${indexTwo}`)}
                             className="portfolio-site__input is-size-6"
                             placeholder="Enter external link here"
                           />
